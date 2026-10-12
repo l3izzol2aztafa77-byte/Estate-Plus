@@ -274,6 +274,7 @@ button,input,select{font:inherit;color:inherit}
 @keyframes epSpin{to{transform:rotate(360deg)}}
 @keyframes epPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.6)}}
 @keyframes epFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes ekScan{from{top:6%}to{top:92%}}
 @keyframes epToast{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
 </style>
 </helmet>
@@ -304,33 +305,7 @@ button,input,select{font:inherit;color:inherit}
           <button sc-camel-on-click="{{ setEn }}" aria-pressed="{{ isEn }}" style="{{ enPill }}">EN</button>
         </div>
         <sc-if value="{{ hasUserNA }}" hint-placeholder-val="{{ false }}">
-          <button sc-camel-on-click="{{ toggleNotif }}" aria-label="{{ t.nTitle }}" aria-expanded="{{ notifOpen }}" style="position:relative;flex:none;width:44px;height:44px;border-radius:12px;border:1px solid oklch(0.9 0.008 95);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;color:oklch(0.3 0.02 170)" style-hover="border-color:oklch(0.42 0.09 170)"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><sc-if value="{{ nHasUnread }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:oklch(0.58 0.19 25);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #fff">{{ nUnread }}</span></sc-if></button>
-        </sc-if>
-        <sc-if value="{{ notMobile }}" hint-placeholder-val="{{ true }}">
-          <div style="display:flex;gap:8px">
-            <sc-if value="{{ noUser }}" hint-placeholder-val="{{ true }}"><button sc-camel-on-click="{{ goLogin }}" style="min-height:44px;padding:0 16px;border-radius:12px;border:0;background:transparent;font-weight:600;cursor:pointer;white-space:nowrap" style-hover="background:oklch(0.94 0.008 95)">{{ t.login }}</button></sc-if>
-            <sc-if value="{{ hasUser }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" style="min-height:44px;padding:0 12px 0 5px;border-radius:999px;border:1px solid oklch(0.9 0.008 95);background:#fff;font-weight:600;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:8px"><span style="width:34px;height:34px;border-radius:50%;background:oklch(0.95 0.04 70);color:oklch(0.48 0.1 60);display:flex;align-items:center;justify-content:center;font-family:Anuphan,sans-serif;font-weight:700">{{ userInitial }}</span>{{ userName }}</button></sc-if>
-            <button sc-camel-on-click="{{ onPost }}" style="white-space:nowrap;flex:none;min-height:44px;padding:0 18px;border-radius:12px;border:0;background:oklch(0.36 0.07 170);color:#fff;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 8px 18px -8px oklch(0.36 0.07 170)" style-hover="background:oklch(0.32 0.07 170)">
-              <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>{{ postLabel }}</button>
-          </div>
-        </sc-if>
-        <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
-          <button sc-camel-on-click="{{ onAccount }}" aria-label="{{ t.login }}" style="width:44px;height:44px;border-radius:12px;border:1px solid oklch(0.91 0.008 95);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
-            <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
-          </button>
-        </sc-if>
-      </div>
-    </div>
-    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-      <div style="position:absolute;right:clamp(16px,4vw,32px);top:64px;width:260px;padding:8px;border-radius:18px;background:#fff;border:1px solid oklch(0.92 0.008 95);box-shadow:0 24px 48px -16px rgba(20,40,35,.35);display:flex;flex-direction:column">
-        <div style="padding:10px 12px 12px;border-bottom:1px solid oklch(0.93 0.006 95);margin-bottom:6px"><b style="display:block">{{ userFull }}</b><span style="font-size:13px;color:oklch(0.5 0.02 170)">{{ userLevel }}</span></div>
-        <button sc-camel-on-click="{{ menuDash }}" style="white-space:nowrap;flex-shrink:0;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:none;text-align:left;font-weight:500;cursor:pointer" style-hover="background:oklch(0.96 0.006 95)">{{ menuDashLabel }}</button>
-        <button sc-camel-on-click="{{ goNew }}" style="white-space:nowrap;flex-shrink:0;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:none;text-align:left;font-weight:500;cursor:pointer" style-hover="background:oklch(0.96 0.006 95)">{{ postLabel }}</button>
-        <button sc-camel-on-click="{{ menuHelp }}" style="white-space:nowrap;flex-shrink:0;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:none;text-align:left;font-weight:500;cursor:pointer" style-hover="background:oklch(0.96 0.006 95)">{{ t.helpNav }}</button>
-        <button sc-camel-on-click="{{ logout }}" style="white-space:nowrap;flex-shrink:0;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:none;text-align:left;font-weight:600;cursor:pointer;color:oklch(0.52 0.18 25)" style-hover="background:oklch(0.97 0.02 25)">{{ t.logout }}</button>
-      </div>
-    </sc-if>
-    <sc-if value="{{ notifOpen }}" hint-placeholder-val="{{ false }}">
+          <span style="position:relative;display:inline-flex"><button sc-camel-on-click="{{ toggleNotif }}" aria-label="{{ t.nTitle }}" aria-expanded="{{ notifOpen }}" style="position:relative;flex:none;width:44px;height:44px;border-radius:12px;border:1px solid oklch(0.9 0.008 95);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;color:oklch(0.3 0.02 170)" style-hover="border-color:oklch(0.42 0.09 170)"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><sc-if value="{{ nHasUnread }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:oklch(0.58 0.19 25);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #fff">{{ nUnread }}</span></sc-if></button>    <sc-if value="{{ notifOpen }}" hint-placeholder-val="{{ false }}">
       <div role="dialog" aria-label="{{ t.nTitle }}" style="{{ nPanelStyle }}">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:14px 16px 10px"><b style="font-family:Anuphan,sans-serif;font-size:18px">{{ t.nTitle }}</b><button sc-camel-on-click="{{ nReadAll }}" style="white-space:nowrap;border:0;background:none;padding:6px;color:oklch(0.42 0.09 170);font-weight:700;font-size:13px;cursor:pointer">{{ t.nReadAll }}</button></div>
         <div style="max-height:min(60vh,460px);overflow-y:auto;padding:0 8px 8px;display:flex;flex-direction:column;gap:4px">
@@ -347,6 +322,32 @@ button,input,select{font:inherit;color:inherit}
         <button sc-camel-on-click="{{ nToBills }}" style="white-space:nowrap;width:100%;min-height:48px;border:0;border-top:1px solid oklch(0.93 0.006 95);background:oklch(0.98 0.003 95);font-weight:700;color:oklch(0.36 0.07 170);cursor:pointer;border-radius:0 0 20px 20px">{{ t.nToBills }}</button>
       </div>
     </sc-if>
+</span>
+        </sc-if>
+        <sc-if value="{{ notMobile }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:8px">
+            <sc-if value="{{ noUser }}" hint-placeholder-val="{{ true }}"><button sc-camel-on-click="{{ goLogin }}" style="min-height:44px;padding:0 16px;border-radius:12px;border:0;background:transparent;font-weight:600;cursor:pointer;white-space:nowrap" style-hover="background:oklch(0.94 0.008 95)">{{ t.login }}</button></sc-if>
+            <sc-if value="{{ hasUser }}" hint-placeholder-val="{{ false }}"><span style="position:relative;display:inline-flex"><button sc-camel-on-click="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" style="min-height:44px;padding:0 12px 0 5px;border-radius:999px;border:1px solid oklch(0.9 0.008 95);background:#fff;font-weight:600;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:8px"><span style="width:34px;height:34px;border-radius:50%;background:oklch(0.95 0.04 70);color:oklch(0.48 0.1 60);display:flex;align-items:center;justify-content:center;font-family:Anuphan,sans-serif;font-weight:700">{{ userInitial }}</span>{{ userName }}</button>    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;right:0;top:calc(100% + 8px);z-index:60;width:260px;padding:8px;border-radius:18px;background:#fff;border:1px solid oklch(0.92 0.008 95);box-shadow:0 24px 48px -16px rgba(20,40,35,.35);display:flex;flex-direction:column">
+        <div style="padding:10px 12px 12px;border-bottom:1px solid oklch(0.93 0.006 95);margin-bottom:6px"><b style="display:block">{{ userFull }}</b><span style="font-size:13px;color:oklch(0.5 0.02 170)">{{ userLevel }}</span></div>
+        <button sc-camel-on-click="{{ menuDash }}" style="white-space:nowrap;flex-shrink:0;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:none;text-align:left;font-weight:500;cursor:pointer" style-hover="background:oklch(0.96 0.006 95)">{{ menuDashLabel }}</button>
+        <button sc-camel-on-click="{{ goNew }}" style="white-space:nowrap;flex-shrink:0;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:none;text-align:left;font-weight:500;cursor:pointer" style-hover="background:oklch(0.96 0.006 95)">{{ postLabel }}</button>
+        <button sc-camel-on-click="{{ menuHelp }}" style="white-space:nowrap;flex-shrink:0;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:none;text-align:left;font-weight:500;cursor:pointer" style-hover="background:oklch(0.96 0.006 95)">{{ t.helpNav }}</button>
+        <button sc-camel-on-click="{{ logout }}" style="white-space:nowrap;flex-shrink:0;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:none;text-align:left;font-weight:600;cursor:pointer;color:oklch(0.52 0.18 25)" style-hover="background:oklch(0.97 0.02 25)">{{ t.logout }}</button>
+      </div>
+    </sc-if>
+</span></sc-if>
+            <button sc-camel-on-click="{{ onPost }}" style="white-space:nowrap;flex:none;min-height:44px;padding:0 18px;border-radius:12px;border:0;background:oklch(0.36 0.07 170);color:#fff;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 8px 18px -8px oklch(0.36 0.07 170)" style-hover="background:oklch(0.32 0.07 170)">
+              <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>{{ postLabel }}</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+          <button sc-camel-on-click="{{ onAccount }}" aria-label="{{ t.login }}" style="width:44px;height:44px;border-radius:12px;border:1px solid oklch(0.91 0.008 95);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+            <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+          </button>
+        </sc-if>
+      </div>
+    </div>
   </header>
 
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
@@ -951,6 +952,33 @@ button,input,select{font:inherit;color:inherit}
                   </div>
                 </div>
                 <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:oklch(0.97 0.004 95);font-size:13px;color:oklch(0.45 0.02 170)"><span style="flex:none;color:oklch(0.42 0.09 165)"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14v10H5zM8 11V8a4 4 0 0 1 8 0v3"></path></svg></span><span style="flex:1;min-width:0">{{ t.pvPrivacy }}</span></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ ld.show }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:14px;padding:clamp(16px,2.5vw,22px);border-radius:24px;border:1.5px solid oklch(0.86 0.05 300);background:linear-gradient(180deg,oklch(0.985 0.012 300),#fff)">
+                <div style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:44px;border-radius:14px;background:oklch(0.45 0.12 300);color:#fff;display:flex;align-items:center;justify-content:center;flex:none"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"></path></svg></span><span style="flex:1;min-width:0;display:flex;flex-direction:column"><b style="font-family:Anuphan,sans-serif;font-size:18px">{{ t.ldTitle }}</b><span style="font-size:13px;color:oklch(0.5 0.02 170)">{{ t.ldSub }}</span></span></div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px">
+                  <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldCoName }}<input value="{{ ld.v.coName }}" sc-camel-on-change="{{ ld.on.coName }}" placeholder="{{ t.ldCoNamePh }}" style="{{ ld.fs.coName }}"><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.coName }}</span></label>
+                  <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldCoReg }}<input value="{{ ld.v.coReg }}" sc-camel-on-change="{{ ld.on.coReg }}" sc-camel-input-mode="numeric" placeholder="0-1055-60123-45-6" style="{{ ld.fs.coReg }}"><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.coReg }}</span></label>
+                  <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldLicType }}<sc-raw-select value="{{ ld.v.licType }}" sc-camel-on-change="{{ ld.on.licType }}" style="{{ ld.sel }}"><sc-for list="{{ ld.licOpts }}" as="o" hint-placeholder-count="8"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></sc-raw-select><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.licType }}</span></label>
+                  <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldLicNo }}<input value="{{ ld.v.licNo }}" sc-camel-on-change="{{ ld.on.licNo }}" placeholder="{{ t.ldLicNoPh }}" style="{{ ld.fs.licNo }}"><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.licNo }}</span></label>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldProds }}</span><div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ ld.prods }}" as="c" hint-placeholder-count="8"><button type="button" aria-pressed="{{ c.active }}" sc-camel-on-click="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button></sc-for></div><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.prods }}</span></div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:14px">
+                  <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldMin }}<input value="{{ ld.v.min }}" sc-camel-on-change="{{ ld.on.min }}" sc-camel-input-mode="numeric" placeholder="0" style="{{ ld.fs.min }}"></label>
+                  <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldMax }}<input value="{{ ld.v.max }}" sc-camel-on-change="{{ ld.on.max }}" sc-camel-input-mode="numeric" placeholder="0" style="{{ ld.fs.max }}"><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.max }}</span></label>
+                  <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldRate }}<input value="{{ ld.v.rate }}" sc-camel-on-change="{{ ld.on.rate }}" sc-camel-input-mode="decimal" placeholder="0.00" style="{{ ld.fs.rate }}"></label>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldRegions }}</span><div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ ld.regions }}" as="c" hint-placeholder-count="7"><button type="button" aria-pressed="{{ c.active }}" sc-camel-on-click="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button></sc-for></div><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.regions }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px;font-weight:700;color:oklch(0.3 0.02 170)">{{ t.ldContact }}</span>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px">
+                    <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldCName }}<input value="{{ ld.v.cName }}" sc-camel-on-change="{{ ld.on.cName }}" style="{{ ld.fs.cName }}"><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.cName }}</span></label>
+                    <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldCPos }}<input value="{{ ld.v.cPos }}" sc-camel-on-change="{{ ld.on.cPos }}" style="{{ ld.fs.cPos }}"></label>
+                    <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldCPhone }}<input value="{{ ld.v.cPhone }}" sc-camel-on-change="{{ ld.on.cPhone }}" type="tel" sc-camel-input-mode="tel" placeholder="02 123 4567 / 081 234 5678" style="{{ ld.fs.cPhone }}"><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.cPhone }}</span></label>
+                    <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.ldCEmail }}<input value="{{ ld.v.cEmail }}" sc-camel-on-change="{{ ld.on.cEmail }}" type="email" placeholder="credit@company.com" style="{{ ld.fs.cEmail }}"><span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ld.err.cEmail }}</span></label>
+                  </div></div>
+                <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:oklch(0.97 0.012 300);font-size:13px;color:oklch(0.42 0.04 300)"><span style="flex:none"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14v10H5zM8 11V8a4 4 0 0 1 8 0v3"></path></svg></span><span style="flex:1;min-width:0">{{ t.ldNote }}</span></div>
+                <button type="button" sc-camel-on-click="{{ ld.fill }}" style="align-self:flex-start;white-space:nowrap;min-height:42px;padding:0 14px;border-radius:12px;border:1px solid oklch(0.9 0.008 95);background:#fff;font-weight:600;cursor:pointer;color:oklch(0.4 0.02 170)">{{ t.fillDemo }}</button>
               </div>
             </sc-if>
             <div style="display:flex;flex-direction:column;gap:8px">
@@ -1729,6 +1757,19 @@ button,input,select{font:inherit;color:inherit}
         </div>
       </div>
       <p style="margin:0;padding:16px 18px;border-radius:16px;background:oklch(0.975 0.004 95);border:1px solid oklch(0.93 0.006 95);font-size:13px;line-height:1.6;color:oklch(0.48 0.02 170)">{{ t.ivDisclaimer }}</p>
+      <div style="border-radius:28px;background:oklch(0.3 0.06 300);color:#fff;padding:clamp(22px,4vw,40px);display:grid;gap:24px;align-items:center;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));position:relative;overflow:hidden">
+        <span style="position:absolute;right:-90px;top:-90px;width:260px;height:260px;border-radius:50%;background:oklch(0.38 0.08 300);opacity:.7"></span>
+        <div style="position:relative;display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.06em;color:oklch(0.85 0.08 300)">{{ t.ldCtaEyebrow }}</span>
+          <h2 style="margin:0;font-family:Anuphan,sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.3">{{ t.ldCtaTitle }}</h2>
+          <p style="margin:0;color:oklch(0.9 0.03 300)">{{ t.ldCtaSub }}</p>
+          <button type="button" sc-camel-on-click="{{ ld.cta }}" style="align-self:flex-start;margin-top:6px;white-space:nowrap;min-height:52px;padding:0 22px;border-radius:14px;border:0;background:#fff;color:oklch(0.3 0.06 300);font-weight:700;cursor:pointer">{{ t.ldCtaBtn }}</button>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ ld.ctaPoints }}" as="p" hint-placeholder-count="3"><div style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)"><span style="width:26px;height:26px;flex:none;border-radius:50%;background:oklch(0.85 0.08 300);color:oklch(0.3 0.06 300);display:flex;align-items:center;justify-content:center;font-weight:700">✓</span><span style="display:flex;flex-direction:column"><b>{{ p.title }}</b><span style="font-size:14px;color:oklch(0.88 0.03 300)">{{ p.desc }}</span></span></div></sc-for>
+        </div>
+      </div>
+
     </div>
   </section>
   </sc-if>
@@ -2431,7 +2472,7 @@ button,input,select{font:inherit;color:inherit}
     <div style="display:grid;gap:20px;align-items:start;grid-template-columns:{{ ky.cols }}">
       <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
         <sc-if value="{{ ky.wasRejected }}" hint-placeholder-val="{{ false }}">
-          <div role="alert" style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 16px;border-radius:16px;background:oklch(0.97 0.02 25);border:1px solid oklch(0.88 0.06 25);color:oklch(0.45 0.14 25);font-size:14px;font-weight:600"><span style="flex:1 1 240px">{{ t.kycRejected }}</span><button type="button" sc-camel-on-click="{{ ky.seeWhy }}" style="white-space:nowrap;min-height:38px;padding:0 14px;border-radius:10px;border:1px solid oklch(0.85 0.07 25);background:#fff;color:oklch(0.45 0.14 25);font-weight:700;cursor:pointer">{{ t.kycSeeWhy }}</button></div>
+          <div role="alert" style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 16px;border-radius:16px;background:oklch(0.97 0.02 25);border:1px solid oklch(0.88 0.06 25);color:oklch(0.45 0.14 25);font-size:14px;font-weight:600"><span style="flex:1 1 240px">{{ t.kycRejected }}<span style="display:block;margin-top:4px;font-weight:700">{{ ky.rejNote }}</span></span><button type="button" sc-camel-on-click="{{ ky.seeWhy }}" style="white-space:nowrap;min-height:38px;padding:0 14px;border-radius:10px;border:1px solid oklch(0.85 0.07 25);background:#fff;color:oklch(0.45 0.14 25);font-weight:700;cursor:pointer">{{ t.kycSeeWhy }}</button></div>
         </sc-if>
         <sc-if value="{{ ky.inWizard }}" hint-placeholder-val="{{ true }}">
         <div style="border-radius:28px;background:#fff;border:1px solid oklch(0.92 0.008 95);box-shadow:0 1px 2px rgba(20,40,35,.05),0 30px 60px -36px rgba(20,40,35,.3);padding:clamp(18px,3.4vw,32px);display:flex;flex-direction:column;gap:22px">
@@ -2487,9 +2528,11 @@ button,input,select{font:inherit;color:inherit}
                 </label>
               </sc-if>
               <sc-if value="{{ ky.hasFront }}" hint-placeholder-val="{{ false }}">
-                <div style="position:relative;max-width:440px;border-radius:18px;overflow:hidden;border:1px solid oklch(0.88 0.03 165);box-shadow:0 14px 30px -20px rgba(20,40,35,.45)"><img src="{{ ky.front }}" alt="" style="display:block;width:100%;aspect-ratio:856/540;object-fit:cover"><button type="button" sc-camel-on-click="{{ ky.clearFront }}" style="position:absolute;right:10px;top:10px;min-height:36px;padding:0 12px;border-radius:10px;border:0;background:rgba(255,255,255,.92);font-weight:700;font-size:13px;cursor:pointer">{{ t.kidRetake }}</button></div>
+                <div style="position:relative;max-width:440px;border-radius:18px;overflow:hidden;border:1px solid oklch(0.88 0.03 165);box-shadow:0 14px 30px -20px rgba(20,40,35,.45)"><img src="{{ ky.front }}" alt="" style="display:block;width:100%;aspect-ratio:856/540;object-fit:cover"><sc-if value="{{ ky.ocrReading }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;background:rgba(20,50,42,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;font-weight:700;font-size:14px"><span style="position:absolute;left:0;right:0;height:3px;background:oklch(0.8 0.15 165);box-shadow:0 0 18px oklch(0.8 0.15 165);animation:ekScan 1.2s ease-in-out infinite alternate"></span><span style="width:30px;height:30px;border-radius:50%;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;animation:epSpin .8s linear infinite"></span>{{ t.ocrReading }}</div></sc-if><button type="button" sc-camel-on-click="{{ ky.clearFront }}" style="position:absolute;right:10px;top:10px;min-height:36px;padding:0 12px;border-radius:10px;border:0;background:rgba(255,255,255,.92);font-weight:700;font-size:13px;cursor:pointer">{{ t.kidRetake }}</button></div>
               </sc-if>
               <span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ky.err.front }}</span>
+              <sc-if value="{{ ky.ocrDone }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:oklch(0.97 0.025 165);border:1px solid oklch(0.88 0.05 165);font-size:13px;font-weight:600;color:oklch(0.35 0.08 165)"><span style="flex:none;padding:1px 8px;border-radius:999px;background:oklch(0.36 0.07 170);color:#fff;font-size:11px;font-weight:700">{{ t.ekBadge }}</span><span style="flex:1;min-width:0">{{ t.ocrDone }}</span></div></sc-if>
+              <sc-if value="{{ ky.ocrIdle }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;color:oklch(0.5 0.02 170)">{{ t.ocrHint }}</span></sc-if>
               <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:oklch(0.45 0.02 170)"><sc-for list="{{ t.kidTips }}" as="tip" hint-placeholder-count="3"><span>✓ {{ tip }}</span></sc-for></div>
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between">
@@ -2507,16 +2550,20 @@ button,input,select{font:inherit;color:inherit}
             </sc-if>
             <sc-if value="{{ ky.bioOk }}" hint-placeholder-val="{{ true }}">
               <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:8px 0">
-                <div style="{{ ky.ovalStyle }}">
-                  <sc-if value="{{ ky.hasSelfie }}" hint-placeholder-val="{{ false }}"><img src="{{ ky.selfie }}" alt="" style="width:100%;height:100%;object-fit:cover"></sc-if>
-                  <sc-if value="{{ ky.noSelfie }}" hint-placeholder-val="{{ true }}"><svg width="96" height="96" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></sc-if>
+                <div style="display:flex;align-items:center;gap:8px"><span style="padding:2px 10px;border-radius:999px;background:oklch(0.36 0.07 170);color:#fff;font-size:12px;font-weight:700">{{ t.ekBadge }}</span><b style="font-size:15px">{{ t.liveTitle }}</b></div>
+                <div style="{{ ky.ringStyle }}">
+                  <div style="width:100%;height:100%;border-radius:50% / 42%;overflow:hidden;background:oklch(0.97 0.012 165);display:flex;align-items:center;justify-content:center;color:oklch(0.6 0.05 165)">
+                    <sc-if value="{{ ky.liveIdle }}" hint-placeholder-val="{{ true }}"><svg width="96" height="96" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></sc-if>
+                    <sc-if value="{{ ky.liveRun }}" hint-placeholder-val="{{ false }}"><img src="{{ ky.selfieDemo }}" alt="" style="{{ ky.faceStyle }}"></sc-if>
+                    <sc-if value="{{ ky.liveOk }}" hint-placeholder-val="{{ false }}"><img src="{{ ky.selfieDemo }}" alt="" style="width:100%;height:100%;object-fit:cover"></sc-if>
+                  </div>
                 </div>
+                <div style="display:flex;gap:6px"><sc-for list="{{ ky.liveDots }}" as="d" hint-placeholder-count="4"><span style="{{ d.style }}"></span></sc-for></div>
+                <div role="status" aria-live="polite" style="min-height:28px;display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:oklch(0.3 0.04 170)"><sc-if value="{{ ky.liveOk }}" hint-placeholder-val="{{ false }}"><span style="color:oklch(0.45 0.1 165)">✓</span></sc-if>{{ ky.livePrompt }} <span style="font-size:13px;font-weight:600;color:oklch(0.55 0.02 170)">{{ ky.liveStepTxt }}</span></div>
+                <span style="font-size:13px;color:oklch(0.5 0.02 170)">{{ t.liveSub }}</span>
                 <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;font-size:13px;color:oklch(0.45 0.02 170)"><sc-for list="{{ t.ksTips }}" as="tip" hint-placeholder-count="3"><span>✓ {{ tip }}</span></sc-for></div>
-                <span style="font-size:13px;font-weight:500;color:oklch(0.52 0.18 25)">{{ ky.err.selfie }}</span>
-                <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
-                  <label style="position:relative;white-space:nowrap;min-height:48px;padding:0 18px;border-radius:14px;border:1px solid oklch(0.85 0.04 165);background:oklch(0.97 0.02 165);font-weight:700;color:oklch(0.32 0.07 170);cursor:pointer;display:flex;align-items:center;gap:8px"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 10.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg>{{ t.ksTake }}<input type="file" accept="image/*" capture="user" sc-camel-on-change="{{ ky.onSelfie }}" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"></label>
-                  <button type="button" sc-camel-on-click="{{ ky.demoSelfie }}" style="white-space:nowrap;min-height:48px;padding:0 14px;border-radius:14px;border:0;background:transparent;font-weight:600;cursor:pointer;color:oklch(0.42 0.02 170)" style-hover="background:oklch(0.96 0.006 95)">{{ t.ksDemo }}</button>
-                </div>
+                <span style="font-size:13px;font-weight:600;color:oklch(0.52 0.18 25)">{{ ky.err.selfie }}</span>
+                <sc-if value="{{ ky.notLiveRun }}" hint-placeholder-val="{{ true }}"><button type="button" sc-camel-on-click="{{ ky.startLive }}" style="white-space:nowrap;min-height:50px;padding:0 22px;border-radius:14px;border:1px solid oklch(0.85 0.04 165);background:oklch(0.97 0.02 165);font-weight:700;color:oklch(0.32 0.07 170);cursor:pointer;display:flex;align-items:center;gap:8px"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 10.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg>{{ ky.liveBtn }}</button></sc-if>
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between">
                 <button type="button" sc-camel-on-click="{{ ky.back }}" style="white-space:nowrap;min-height:52px;padding:0 18px;border-radius:14px;border:1px solid oklch(0.9 0.008 95);background:#fff;font-weight:600;cursor:pointer">{{ t.kBack }}</button>
@@ -2549,16 +2596,53 @@ button,input,select{font:inherit;color:inherit}
               <button type="button" sc-camel-on-click="{{ ky.submit }}" style="white-space:nowrap;min-height:52px;padding:0 24px;border-radius:14px;border:0;background:oklch(0.36 0.07 170);color:#fff;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 10px 20px -10px oklch(0.36 0.07 170)" style-hover="background:oklch(0.32 0.07 170)"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6zM8.5 12l2.5 2.5 4.5-5"></path></svg>{{ t.krSubmit }}</button>
             </div>
           </sc-if>
+
+          <!-- e-KYC processing -->
+          <sc-if value="{{ ky.sProc }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:8px 0"><span style="width:56px;height:56px;border-radius:50%;border:4px solid oklch(0.92 0.03 165);border-top-color:oklch(0.42 0.09 165);animation:epSpin .9s linear infinite"></span><h2 style="margin:8px 0 0;font-family:Anuphan,sans-serif;font-weight:700;font-size:23px">{{ t.procTitle }}</h2><span style="color:oklch(0.5 0.02 170);font-size:14px">{{ t.procSub }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ ky.procRows }}" as="p" hint-placeholder-count="4">
+                <div style="{{ p.style }}">
+                  <sc-if value="{{ p.done }}" hint-placeholder-val="{{ false }}"><span style="width:26px;height:26px;flex:none;border-radius:50%;background:oklch(0.5 0.1 165);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">✓</span></sc-if>
+                  <sc-if value="{{ p.cur }}" hint-placeholder-val="{{ false }}"><span style="width:26px;height:26px;flex:none;border-radius:50%;border:3px solid oklch(0.9 0.03 165);border-top-color:oklch(0.42 0.09 165);animation:epSpin .8s linear infinite"></span></sc-if>
+                  <sc-if value="{{ p.wait }}" hint-placeholder-val="{{ true }}"><span style="width:26px;height:26px;flex:none;border-radius:50%;border:2px dashed oklch(0.85 0.01 95)"></span></sc-if>
+                  <span style="flex:1;min-width:0">{{ p.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
         </div>
         </sc-if>
 
         <!-- done + consent record -->
         <sc-if value="{{ ky.isDone }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ ky.isOk }}" hint-placeholder-val="{{ false }}">
+            <div style="border-radius:28px;background:#fff;border:1px solid oklch(0.85 0.05 165);box-shadow:0 1px 2px rgba(20,40,35,.05),0 30px 60px -36px rgba(20,40,35,.3);padding:clamp(22px,4vw,36px);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+              <span style="width:72px;height:72px;border-radius:50%;background:oklch(0.5 0.1 165);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -14px oklch(0.45 0.1 165)"><svg width="34" height="34" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+              <h2 style="margin:0;font-family:Anuphan,sans-serif;font-weight:700;font-size:26px">{{ t.ekOkTitle }}</h2>
+              <span style="color:oklch(0.45 0.02 170);max-width:480px">{{ t.ekOkSub }}</span>
+            </div>
+          </sc-if>
           <sc-if value="{{ ky.justSent }}" hint-placeholder-val="{{ true }}">
-            <div style="border-radius:28px;background:#fff;border:1px solid oklch(0.92 0.008 95);box-shadow:0 1px 2px rgba(20,40,35,.05),0 30px 60px -36px rgba(20,40,35,.3);padding:clamp(22px,4vw,36px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
-              <span style="width:72px;height:72px;border-radius:50%;background:oklch(0.94 0.04 165);color:oklch(0.42 0.09 165);display:flex;align-items:center;justify-content:center;animation:epFloat 3s ease-in-out infinite"><svg width="34" height="34" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
-              <h2 style="margin:0;font-family:Anuphan,sans-serif;font-weight:700;font-size:26px">{{ t.kdTitle }}</h2>
-              <span style="color:oklch(0.45 0.02 170);max-width:460px">{{ t.kdSub }}</span>
+            <div style="border-radius:28px;background:#fff;border:1px solid oklch(0.88 0.06 70);box-shadow:0 1px 2px rgba(20,40,35,.05),0 30px 60px -36px rgba(20,40,35,.3);padding:clamp(22px,4vw,36px);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+              <span style="width:72px;height:72px;border-radius:50%;background:oklch(0.95 0.04 70);color:oklch(0.5 0.11 60);display:flex;align-items:center;justify-content:center;animation:epFloat 3s ease-in-out infinite"><svg width="34" height="34" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"></path></svg></span>
+              <h2 style="margin:0;font-family:Anuphan,sans-serif;font-weight:700;font-size:26px">{{ t.ekRevTitle }}</h2>
+              <span style="color:oklch(0.45 0.02 170);max-width:480px">{{ t.ekRevSub }}</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ky.isRej }}" hint-placeholder-val="{{ false }}">
+            <div style="border-radius:28px;background:#fff;border:1px solid oklch(0.88 0.06 25);box-shadow:0 1px 2px rgba(20,40,35,.05),0 30px 60px -36px rgba(20,40,35,.3);padding:clamp(22px,4vw,36px);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+              <span style="width:72px;height:72px;border-radius:50%;background:oklch(0.97 0.02 25);color:oklch(0.55 0.17 25);display:flex;align-items:center;justify-content:center"><svg width="32" height="32" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>
+              <h2 style="margin:0;font-family:Anuphan,sans-serif;font-weight:700;font-size:26px">{{ t.ekRejTitle }}</h2>
+              <span style="color:oklch(0.45 0.12 25);max-width:480px;font-weight:600">{{ t.ekRejSub }} {{ ky.rejText }}</span>
+              <span style="font-size:12px;color:oklch(0.55 0.02 170)">{{ ky.rejBy }}</span>
+              <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:6px"><button type="button" sc-camel-on-click="{{ ky.restart }}" style="white-space:nowrap;min-height:48px;padding:0 20px;border-radius:14px;border:0;background:oklch(0.36 0.07 170);color:#fff;font-weight:600;cursor:pointer">{{ t.ekRetry }}</button><button type="button" sc-camel-on-click="{{ ky.seeWhy }}" style="white-space:nowrap;min-height:48px;padding:0 18px;border-radius:14px;border:1px solid oklch(0.9 0.008 95);background:#fff;font-weight:600;cursor:pointer">{{ t.kycSeeWhy }}</button></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ky.hasEk }}" hint-placeholder-val="{{ false }}">
+            <div style="border-radius:24px;background:#fff;border:1px solid oklch(0.92 0.008 95);box-shadow:0 1px 2px rgba(20,40,35,.05),0 12px 28px -18px rgba(20,40,35,.25);padding:clamp(18px,3vw,24px);display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px"><b style="font-family:Anuphan,sans-serif;font-size:19px">{{ t.ekResult }}</b><span style="padding:2px 10px;border-radius:999px;background:oklch(0.95 0.006 95);font-size:12px;font-weight:700">{{ t.ekDemo }} · {{ ky.ekDecision }}</span></div>
+              <sc-for list="{{ ky.ekRows }}" as="r" hint-placeholder-count="4"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid oklch(0.94 0.006 95);font-size:14px"><span>{{ r.label }}</span><span style="{{ r.style }}">{{ r.val }}</span></div></sc-for>
             </div>
           </sc-if>
           <div style="border-radius:24px;background:#fff;border:1px solid oklch(0.92 0.008 95);box-shadow:0 1px 2px rgba(20,40,35,.05),0 12px 28px -18px rgba(20,40,35,.25);padding:clamp(18px,3vw,26px);display:flex;flex-direction:column;gap:14px">
@@ -2593,6 +2677,13 @@ button,input,select{font:inherit;color:inherit}
       </div>
 
       <aside style="{{ ky.asideStyle }}">
+        <sc-if value="{{ ky.inWizard }}" hint-placeholder-val="{{ true }}"><sc-if value="{{ ky.notProc }}" hint-placeholder-val="{{ true }}">
+        <div style="border-radius:24px;background:oklch(0.98 0.02 70);border:1.5px dashed oklch(0.82 0.08 70);padding:18px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:8px"><span style="padding:2px 8px;border-radius:999px;background:oklch(0.58 0.12 60);color:#fff;font-size:11px;font-weight:700">DEMO</span><b style="font-size:15px">{{ t.ekScenTitle }}</b></div>
+          <span style="font-size:12px;color:oklch(0.45 0.04 60)">{{ t.ekScenSub }}</span>
+          <div role="radiogroup" style="display:flex;flex-direction:column;gap:6px"><sc-for list="{{ ky.scens }}" as="o" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{ o.active }}" sc-camel-on-click="{{ o.onClick }}" style="{{ o.style }}">{{ o.label }}<span style="font-size:12px;font-weight:500;color:oklch(0.5 0.02 170)">{{ o.sub }}</span></button></sc-for></div>
+        </div>
+        </sc-if></sc-if>
         <div style="border-radius:24px;background:#fff;border:1px solid oklch(0.92 0.008 95);box-shadow:0 1px 2px rgba(20,40,35,.05),0 12px 28px -18px rgba(20,40,35,.25);padding:20px;display:flex;flex-direction:column;gap:12px">
           <b style="font-family:Anuphan,sans-serif;font-size:18px">{{ t.kycNeedHelp }}</b>
           <button type="button" sc-camel-on-click="{{ hp.openKycFaq }}" style="min-height:46px;padding:0 14px;border-radius:12px;border:0;background:oklch(0.94 0.04 165);color:oklch(0.32 0.07 170);font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left">{{ t.kycFaq }}<svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
@@ -2641,6 +2732,81 @@ button,input,select{font:inherit;color:inherit}
         </button>
       </sc-for>
     </nav>
+  </sc-if>
+
+  <!-- ADMIN · KYC REVIEW MODAL -->
+  <sc-if value="{{ kr.open }}" hint-placeholder-val="{{ false }}">
+    <div sc-camel-on-click="{{ kr.close }}" style="position:fixed;inset:0;z-index:95;background:rgba(15,30,26,.55);backdrop-filter:blur(3px);display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;padding:clamp(0px,3vw,32px)">
+      <div role="dialog" aria-modal="true" aria-label="{{ t.krTitle }}" sc-camel-on-click="{{ kr.stop }}" style="width:100%;max-width:1020px;background:oklch(0.975 0.005 95);border-radius:28px;box-shadow:0 40px 80px -30px rgba(0,0,0,.55);overflow:hidden;margin:auto 0">
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px;padding:20px 22px;background:#fff;border-bottom:1px solid oklch(0.92 0.008 95)">
+          <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:12px;font-weight:700;letter-spacing:.05em;color:oklch(0.5 0.02 170)">{{ t.krTitle }} · {{ kr.ref }}</span>
+            <b style="font-family:Anuphan,sans-serif;font-size:23px;line-height:1.3">{{ kr.name }}</b>
+            <span style="font-size:13px;color:oklch(0.5 0.02 170)">{{ kr.sub }} · {{ kr.submitted }}</span>
+          </div>
+          <span style="{{ kr.statusStyle }}">{{ kr.status }}</span>
+          <button type="button" sc-camel-on-click="{{ kr.close }}" aria-label="{{ t.krClose }}" style="flex:none;width:40px;height:40px;border-radius:12px;border:0;background:oklch(0.96 0.006 95);cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+        </div>
+        <sc-if value="{{ kr.noRec }}" hint-placeholder-val="{{ false }}"><div style="padding:40px 22px;text-align:center;color:oklch(0.5 0.02 170)">{{ t.krNoRec }}</div></sc-if>
+        <sc-if value="{{ kr.hasRec }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:18px;display:grid;gap:16px;align-items:start;grid-template-columns:{{ kr.cols }}">
+          <!-- left column -->
+          <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+            <div style="border-radius:20px;background:#fff;border:1px solid oklch(0.92 0.008 95);padding:16px;display:flex;flex-direction:column;gap:12px">
+              <b style="font-size:16px">{{ t.krSecDocs }}</b>
+              <div style="display:grid;gap:10px;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:start">
+                <div style="display:flex;flex-direction:column;gap:6px"><img src="{{ kr.front }}" alt="{{ t.krCard }}" style="width:100%;aspect-ratio:856/540;object-fit:cover;border-radius:12px;border:1px solid oklch(0.9 0.008 95)"><span style="font-size:12px;color:oklch(0.5 0.02 170)">{{ t.krCard }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:6px"><img src="{{ kr.selfie }}" alt="{{ t.krSelfie }}" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:50% / 42%;border:3px solid oklch(0.88 0.03 165)"><span style="font-size:12px;color:oklch(0.5 0.02 170)">{{ t.krSelfie }}</span></div>
+              </div>
+            </div>
+            <div style="border-radius:20px;background:#fff;border:1px solid oklch(0.92 0.008 95);padding:16px;display:flex;flex-direction:column;gap:4px">
+              <b style="font-size:16px;margin-bottom:6px">{{ t.krSecData }}</b>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr) auto;gap:6px 10px;font-size:12px;font-weight:700;color:oklch(0.5 0.02 170);padding-bottom:6px;border-bottom:1px solid oklch(0.93 0.006 95)"><span>{{ kr.col0 }}</span><span>{{ kr.col1 }}</span><span>{{ kr.col2 }}</span><span></span></div>
+              <sc-for list="{{ kr.dataRows }}" as="r" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr) auto;gap:6px 10px;align-items:center;font-size:13px;padding:8px 0;border-bottom:1px solid oklch(0.95 0.004 95)"><span style="color:oklch(0.5 0.02 170)">{{ r.label }}</span><b style="font-weight:600;overflow-wrap:anywhere;font-variant-numeric:tabular-nums">{{ r.a }}</b><b style="font-weight:600;overflow-wrap:anywhere;font-variant-numeric:tabular-nums">{{ r.b }}</b><span style="{{ r.chip.style }}">{{ r.chip.label }}</span></div></sc-for>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;font-size:13px"><span style="color:oklch(0.5 0.02 170)">{{ t.krFields.exp }}</span><span style="{{ kr.expChip.style }}">{{ kr.expChip.label }}</span></div>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding-top:6px;font-size:13px"><span style="color:oklch(0.5 0.02 170)">{{ t.krDup }}</span><span style="{{ kr.dupChip.style }}">{{ kr.dupChip.label }}</span></div>
+            </div>
+            <div style="border-radius:20px;background:#fff;border:1px solid oklch(0.92 0.008 95);padding:16px;display:flex;flex-direction:column;gap:2px">
+              <b style="font-size:16px;margin-bottom:6px">{{ t.krSecConsent }}</b>
+              <sc-for list="{{ kr.consents }}" as="c" hint-placeholder-count="4"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid oklch(0.95 0.004 95);font-size:13px"><span>{{ c.label }}</span><span style="{{ c.chip.style }}">{{ c.chip.label }}</span></div></sc-for>
+            </div>
+          </div>
+          <!-- right column -->
+          <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+            <div style="border-radius:20px;background:#fff;border:1px solid oklch(0.92 0.008 95);padding:16px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px"><b style="font-size:16px">{{ t.krSecEkyc }}</b><span style="padding:2px 10px;border-radius:999px;background:oklch(0.95 0.006 95);font-size:12px;font-weight:700">{{ t.ekDemo }} · {{ kr.decision }}</span></div>
+              <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px"><span style="font-size:13px;color:oklch(0.5 0.02 170)">{{ t.krScore }}</span><span style="display:flex;align-items:baseline;gap:8px"><b style="{{ kr.faceStyle }}">{{ kr.face }}</b><span style="font-size:12px;font-weight:700;color:oklch(0.5 0.02 170)">{{ kr.faceLabel }}</span></span></div>
+              <div style="position:relative;height:12px;border-radius:999px;background:oklch(0.94 0.006 95)"><span style="{{ kr.barFill }}"></span><span style="position:absolute;left:70%;top:-4px;bottom:-4px;width:2px;background:oklch(0.55 0.1 60)"></span><span style="position:absolute;left:90%;top:-4px;bottom:-4px;width:2px;background:oklch(0.42 0.09 165)"></span></div>
+              <span style="font-size:11px;color:oklch(0.5 0.02 170)">{{ t.krThr }}</span>
+              <sc-for list="{{ kr.ekRows }}" as="r" hint-placeholder-count="4"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid oklch(0.95 0.004 95);font-size:13px"><span>{{ r.label }}</span><span style="{{ r.style }}">{{ r.val }}</span></div></sc-for>
+              <sc-if value="{{ kr.hasReasons }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 12px;border-radius:12px;background:oklch(0.97 0.03 70);font-size:13px;color:oklch(0.42 0.08 60)"><b>{{ t.krSuggest }}:</b> <sc-for list="{{ kr.reasons }}" as="x" hint-placeholder-count="1"><span>{{ x }}</span></sc-for></div></sc-if>
+              <sc-if value="{{ kr.autoHint }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 12px;border-radius:12px;background:oklch(0.97 0.025 165);font-size:13px;font-weight:600;color:oklch(0.38 0.08 165)">{{ t.krHintAuto }}</div></sc-if>
+            </div>
+            <div style="border-radius:20px;background:#fff;border:1px solid oklch(0.92 0.008 95);padding:16px;display:flex;flex-direction:column;gap:8px">
+              <b style="font-size:16px">{{ t.krSecCheck }}</b>
+              <sc-for list="{{ kr.checks }}" as="c" hint-placeholder-count="5">
+                <label style="{{ c.style }}"><input type="checkbox" checked="{{ c.checked }}" disabled="{{ c.disabled }}" sc-camel-on-change="{{ c.onChange }}" style="width:19px;height:19px;margin:1px 0 0;flex:none;accent-color:oklch(0.36 0.07 170)"><span style="flex:1;min-width:0">{{ c.label }}</span><span style="{{ c.sys.style }}">{{ c.sys.label }}</span></label>
+              </sc-for>
+            </div>
+            <div style="border-radius:20px;background:#fff;border:1px solid oklch(0.92 0.008 95);padding:16px;display:flex;flex-direction:column;gap:10px">
+              <b style="font-size:16px">{{ t.krSecDecide }}</b>
+              <sc-if value="{{ kr.showDone }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 12px;border-radius:12px;background:oklch(0.97 0.004 95);font-size:13px;font-weight:600">{{ kr.doneText }}<sc-if value="{{ kr.hasRej }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:4px;color:oklch(0.5 0.15 25)">{{ kr.rejText }}</span></sc-if></div></sc-if>
+              <sc-if value="{{ kr.readOnly }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 12px;border-radius:12px;background:oklch(0.97 0.03 70);font-size:13px;color:oklch(0.42 0.08 60)">{{ t.krReadOnly }}</div></sc-if>
+              <sc-if value="{{ kr.canAct }}" hint-placeholder-val="{{ true }}">
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.krReason }}<sc-raw-select value="{{ kr.reason }}" sc-camel-on-change="{{ kr.onReason }}" style="{{ kr.inp }}"><sc-for list="{{ kr.reasonOpts }}" as="o" hint-placeholder-count="8"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></sc-raw-select></label>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:oklch(0.35 0.02 170)">{{ t.krNote }}<input value="{{ kr.note }}" sc-camel-on-change="{{ kr.onNote }}" sc-camel-max-length="200" placeholder="{{ t.krNotePh }}" style="height:46px;width:100%;border-radius:12px;border:1px solid oklch(0.9 0.008 95);background:oklch(0.985 0.003 95);padding:0 12px;font-size:15px;outline:none"></label>
+                <span style="font-size:13px;font-weight:600;color:oklch(0.52 0.18 25)">{{ kr.err }}</span>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <button type="button" sc-camel-on-click="{{ kr.approve }}" style="flex:1 1 140px;white-space:nowrap;min-height:50px;padding:0 18px;border-radius:14px;border:0;background:oklch(0.36 0.07 170);color:#fff;font-weight:700;cursor:pointer">{{ t.krApprove }}</button>
+                  <button type="button" sc-camel-on-click="{{ kr.reject }}" style="flex:1 1 140px;white-space:nowrap;min-height:50px;padding:0 18px;border-radius:14px;border:1px solid oklch(0.85 0.08 25);background:#fff;color:oklch(0.5 0.17 25);font-weight:700;cursor:pointer">{{ t.krReject }}</button>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+    </div>
   </sc-if>
 
   <!-- DOC MODAL (T&C / Privacy / Biometric consent) -->
@@ -2874,6 +3040,8 @@ const DEMO_ACCTS = [
   { email: "khaomanee@example.com", phone: "0833333333", pw: "Cat12345", role: "user", roles: ["BUYER"], acct: "INDIVIDUAL", name: [["เปย์ตรง", "ทรงอย่างแบด"], ["Paytrong", "Songyangbad"]], joined: Date.now() - 20 * DAY },
   { email: "sa-at@example.com", phone: "0844444444", pw: "Cat12345", role: "user", roles: ["PROVIDER"], acct: "INDIVIDUAL", name: [["สะอาด", "เอี่ยมอ่อง"], ["Sa-at", "Iam-ong"]], joined: Date.now() - 45 * DAY,
     provider: { type: "INDIVIDUAL", fullName: "สะอาด เอี่ยมอ่อง", idNo: "1-1037-02345-67-9", phone: "0844444444", email: "sa-at@example.com", line: "@saat.clean", facebook: "", other: "", coReg: "", coName: "", coAddr: "", cats: { 0: true, 1: true, 9: true }, areas: { 1: "ALL", 3: "ALL" } } },
+  { email: "lender@example.com", phone: "0855555555", pw: "Cat12345", role: "user", roles: ["LENDER"], acct: "COMPANY", name: [["สมปอง", "ปล่อยไว"], ["Sompong", "Ploiwai"]], joined: Date.now() - 60 * DAY,
+    lender: { coName: "บริษัท ปล่อยไว แคปปิตอล จำกัด (ตัวอย่าง)", coReg: "0105560987650", licType: "2", licNo: "DEMO-LIC-0001", prods: { 0: true, 1: true, 2: true, 4: true }, min: "200000", max: "30000000", rate: "6.25", regions: { ALL: true }, cName: "สมปอง ปล่อยไว", cPos: "ผู้จัดการฝ่ายสินเชื่อ", cPhone: "0855555555", cEmail: "credit@ploiwai.example" } },
   { email: "admin@estateplus.example", phone: "0899999999", pw: "Admin12345", role: "admin", staffRole: "SUPER", roles: [], acct: "INDIVIDUAL", name: [["น๊าแอ๊ด", "มินมิ้น"], ["Na Add", "Minmin"]], joined: Date.now() - 400 * DAY },
   { email: "finance@estateplus.example", phone: "0890000001", pw: "Admin12345", role: "admin", staffRole: "FINANCE", roles: [], acct: "INDIVIDUAL", name: [["เป๊ะปัง", "ตังค์ครบ"], ["Pehpang", "Tangkrob"]], joined: Date.now() - 300 * DAY },
   { email: "support@estateplus.example", phone: "0890000002", pw: "Admin12345", role: "admin", staffRole: "SUPPORT", roles: [], acct: "INDIVIDUAL", name: [["นางฟ้า", "มาโปรด"], ["Nangfa", "Maprod"]], joined: Date.now() - 180 * DAY },
@@ -2890,7 +3058,7 @@ const seedStore = () => {
     imgs: ["hD", "lv2", "kt", "bd", "bt"].map((k) => IM[k]), desc: ["บ้านเดี่ยวหลังมุม พื้นที่จอดรถ 2 คัน สวนรอบบ้าน ใกล้มหาวิทยาลัยและถนนใหญ่", "Corner house with 2-car parking and a wraparound garden, near a university and main road."],
     recs: [], posted: 12, owner: ["คุณนอนกิน ฟ.", "Nonkin F."], views: 342, mine: true, addr: "", uid: W };
   return {
-    [W]: { ...emptySlice(), kyc: "VERIFIED", mine: [tA, tB],
+    [W]: { ...emptySlice(), kyc: "VERIFIED", kycRec: seedKyc("นอนกิน ฟินตลอด", "310060012345", 97, "AUTO_PASS", 30), mine: [tA, tB],
       jobs: [{ id: 102, cat: 6, code: "PL-200102", details: "รีโนเวทห้องครัวและห้องน้ำชั้นล่าง เปลี่ยนกระเบื้องและสุขภัณฑ์ใหม่", date: "", budget: "180000", st: 2, pro: 1, appt: { d: Date.now() - 2 * DAY, slot: SLOTS[0] }, day: 2, pct: 30, vs: 0, paid: "EP2610050311", at: Date.now() - 6 * DAY,
           log: [{ at: Date.now() - 6 * DAY + 36e5, k: "matched" }, { at: Date.now() - 4 * DAY, k: "paid", ref: "EP2610050311" }, { at: Date.now() - DAY - 5 * 36e5, k: "day", day: 1, pct: 15, ph: 1 }, { at: Date.now() - 2 * 36e5, k: "day", day: 2, pct: 30, ph: 1 }] },
         { id: 101, cat: 1, code: "PL-200101", details: "ล้างแอร์ติดผนัง 2 เครื่อง ชั้นบน", date: "", budget: "", st: 3, pro: 0, appt: { d: Date.now() - 30 * DAY, slot: SLOTS[1] }, vs: 3, at: Date.now() - 33 * DAY, paid: "EP2609110417",
@@ -2899,7 +3067,7 @@ const seedStore = () => {
         { id: 1002, kind: "LOAN", title: ["ค่างวดสินเชื่อบ้าน", "Home loan installment"], sub: ["สถาบันการเงิน A · งวดที่ 14/360", "Lender A · 14/360"], amount: 18200, due: Date.now() + 9 * DAY, repeat: true, auto: true }],
       txns: [{ ref: "EP2610050311", kind: "job", title: ["ค่าบริการ: รีโนเวท / ต่อเติม (งวดที่ 1)", "Service fee: Renovation (milestone 1)"], amount: 90000, via: "โอนผ่านบัญชี", method: "transfer", at: Date.now() - 4 * DAY }, { ref: "EP2609110417", kind: "job", title: ["ค่าบริการ: ล้างแอร์", "Service fee: A/C cleaning"], amount: 500, via: "PromptPay QR", method: "promptpay", at: Date.now() - 30 * DAY }],
       inquiries: [{ fromMe: false, code: "PL-200101", title: tA.title, from: ["คุณเปย์ตรง ท.", "Paytrong S."], message: ["สนใจเช่าค่ะ เข้าชมวันเสาร์ได้ไหมคะ", "I’d like to rent — can I view on Saturday?"], visit: true, phone: "083-•••-3333", at: Date.now() - 2 * DAY }] },
-    [S]: { ...emptySlice(), kyc: "PENDING", favs: { "PL-100111": true, "PL-100112": true },
+    [S]: { ...emptySlice(), kyc: "PENDING", kycRec: seedKyc("ติดดอย คอยรัก", "150140023456", 81, "REVIEW", 1, KYC_FACE_B), favs: { "PL-100111": true, "PL-100112": true },
       loans: [{ id: 201, type: 0, code: "PL-100101", amount: 4131000, income: 85000, st: 1, chosen: -1, at: Date.now() - 3 * DAY }],
       bills: [{ id: 2001, kind: "LOAN", title: ["ค่างวดสินเชื่อคอนโด", "Condo loan installment"], sub: ["สถาบันการเงิน B · งวดที่ 31/300", "Lender B · 31/300"], amount: 24800, due: Date.now() - DAY, repeat: true }] },
     [K]: { ...emptySlice(), favs: { "PL-100104": true, "PL-200101": true }, booked: { "PL-100108": "EP2610080932" }, sent: { "PL-200101": true },
@@ -3581,10 +3749,117 @@ Object.assign(T.en, {
   svnQuoteOnly: "Quote on site", svnServices: "{n} services", eSvnItems: "Please select at least one service", svnListTitle: "Listing title", svnListTitlePh: "e.g. Sa-at Services — cleaning, A/C and garden care",
 });
 
+/* ===== e-KYC (simulated) + admin KYC review ===== */
+const KYC_CARD = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 856 540"><rect width="856" height="540" rx="36" fill="#e9f1ee"/><rect width="856" height="96" rx="36" fill="#2d5b50"/><rect y="60" width="856" height="36" fill="#2d5b50"/><text x="40" y="62" font-family="sans-serif" font-size="34" font-weight="700" fill="#fff">SAMPLE ID CARD · DEMO</text><rect x="40" y="140" width="460" height="26" rx="8" fill="#b9cbc5"/><rect x="40" y="196" width="380" height="22" rx="8" fill="#cfdcd8"/><rect x="40" y="246" width="420" height="22" rx="8" fill="#cfdcd8"/><rect x="40" y="296" width="300" height="22" rx="8" fill="#cfdcd8"/><rect x="40" y="430" width="340" height="22" rx="8" fill="#cfdcd8"/><rect x="600" y="150" width="210" height="260" rx="20" fill="#c6d6d1"/><circle cx="705" cy="245" r="52" fill="#9fb7b0"/><path d="M620 400c10-70 60-100 85-100s75 30 85 100z" fill="#9fb7b0"/></svg>');
+const KYC_FACE = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#dfe9e5"/><circle cx="200" cy="165" r="78" fill="#c9a888"/><path d="M70 400c14-96 70-140 130-140s116 44 130 140z" fill="#2d5b50"/><path d="M122 150c0-55 36-86 78-86s78 31 78 86c-18-30-44-40-78-40s-60 10-78 40z" fill="#3b2f2a"/><circle cx="172" cy="170" r="7" fill="#3b2f2a"/><circle cx="228" cy="170" r="7" fill="#3b2f2a"/><path d="M178 205c12 10 32 10 44 0" stroke="#3b2f2a" stroke-width="6" fill="none" stroke-linecap="round"/></svg>');
+const KYC_FACE_B = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#e6e1d8"/><circle cx="200" cy="168" r="80" fill="#d8b596"/><path d="M70 400c14-96 70-140 130-140s116 44 130 140z" fill="#5a4a7a"/><path d="M118 160c-4-62 34-98 82-98s88 36 82 98c-10-34-40-52-82-52s-72 18-82 52z" fill="#2a2420"/><rect x="150" y="160" width="44" height="22" rx="8" fill="none" stroke="#2a2420" stroke-width="5"/><rect x="206" y="160" width="44" height="22" rx="8" fill="none" stroke="#2a2420" stroke-width="5"/><path d="M180 212c12 8 28 8 40 0" stroke="#2a2420" stroke-width="6" fill="none" stroke-linecap="round"/></svg>');
+const withCheckK = (b) => { let s = 0; for (let i = 0; i < 12; i++) s += +b[i] * (13 - i); return b + ((11 - (s % 11)) % 10); };
+const EK_THR = { pass: 90, review: 70 };
+const seedKyc = (name, id12, face, decision, daysAgo, face2) => { const at = Date.now() - daysAgo * DAY, id = withCheckK(id12);
+  const f = { name, id, dob: "1988-03-21", exp: "2030-03-20" };
+  return { ref: "KYC" + new Date(at).toISOString().slice(2, 10).replace(/-/g, "") + id12.slice(-4), at, name, idNo: id, idMask: maskIdK(id), dob: f.dob, exp: f.exp, front: KYC_CARD, selfie: face2 || KYC_FACE, ocr: { ...f },
+    ekyc: { face, live: true, dopa: "OK", decision, reasons: decision === "REVIEW" ? ["LOWSCORE"] : [], provider: "Simulated e-KYC" },
+    items: ["terms", "privacy", "bio", "mkt"].map((k) => ({ k, v: DOC_VER[k], on: k !== "mkt", wd: false, at })), reject: null,
+    review: decision === "AUTO_PASS" ? { by: "e-KYC", at, result: "APPROVED" } : null }; };
+Object.assign(T.th, {
+  ekBadge: "e-KYC", ekDemo: "e-KYC แบบจำลอง", ekScenTitle: "โหมดสาธิต e-KYC", ekScenSub: "เลือกผลที่ต้องการโชว์ ใช้สำหรับเดโมเท่านั้น ระบบจริงจะตัดสินจากผลตรวจ",
+  ekScens: [["pass", "ผ่านอัตโนมัติ", "ใบหน้าตรง ≥ 90%"], ["review", "ต้องตรวจเพิ่ม", "ใบหน้าตรง 70–89%"], ["fail", "ไม่ผ่าน", "ใบหน้าไม่ตรง < 70%"]],
+  ocrReading: "กำลังอ่านข้อมูลจากบัตร…", ocrDone: "อ่านข้อมูลจากบัตรอัตโนมัติแล้ว (OCR) กรุณาตรวจสอบและแก้ไขถ้าไม่ตรง", ocrHint: "ถ่ายหรืออัปโหลดบัตร ระบบจะกรอกข้อมูลให้อัตโนมัติ",
+  liveTitle: "ตรวจใบหน้าและยืนยันว่าเป็นคนจริง", liveSub: "ทำตามคำแนะนำบนหน้าจอ ใช้เวลาประมาณ 5 วินาที", liveStart: "เริ่มตรวจใบหน้า", liveRetry: "ตรวจใหม่",
+  livePrompts: ["มองตรงที่กล้อง", "กะพริบตา 2 ครั้ง", "หันหน้าไปทางซ้ายช้า ๆ", "หันหน้าไปทางขวาช้า ๆ"], liveDone: "ตรวจคนจริงผ่าน (Liveness)", liveIdle: "วางใบหน้าให้อยู่ในกรอบ", eLive: "กรุณาตรวจใบหน้าให้เสร็จก่อน",
+  procTitle: "กำลังตรวจสอบด้วย e-KYC", procSub: "อย่าปิดหน้านี้ ใช้เวลาไม่กี่วินาที",
+  procSteps: ["ตรวจความถูกต้องของบัตร (OCR)", "ตรวจสถานะบัตรกับฐานข้อมูลกรมการปกครอง (จำลอง)", "ตรวจคนจริง (Liveness)", "เทียบใบหน้ากับรูปบนบัตร"],
+  ekOkTitle: "ยืนยันตัวตนสำเร็จ", ekOkSub: "ระบบ e-KYC ตรวจผ่านอัตโนมัติ ใช้งานธุรกรรมที่ต้องยืนยันตัวตนได้ทันที",
+  ekRevTitle: "ส่งให้เจ้าหน้าที่ตรวจเพิ่มเติม", ekRevSub: "ระบบ e-KYC ยังไม่มั่นใจพอจะอนุมัติอัตโนมัติ เจ้าหน้าที่จะตรวจภายใน 1–2 วันทำการ และแจ้งผลทางการแจ้งเตือนและอีเมล",
+  ekRejTitle: "การยืนยันตัวตนไม่ผ่าน", ekRejSub: "สาเหตุ:", ekRetry: "ส่งข้อมูลใหม่", ekResult: "ผลตรวจ e-KYC",
+  ekRows: { ocr: "อ่านข้อมูลบัตร (OCR)", dopa: "สถานะบัตร (กรมการปกครอง)", live: "ตรวจคนจริง (Liveness)", face: "เทียบใบหน้ากับบัตร" }, ekOk: "ผ่าน", ekWarn: "ต้องตรวจเพิ่ม", ekBad: "ไม่ผ่าน", ekCardOk: "บัตรใช้งานได้",
+  ekDecision: { AUTO_PASS: "อนุมัติอัตโนมัติ", REVIEW: "รอเจ้าหน้าที่ตรวจ", AUTO_FAIL: "ไม่ผ่านอัตโนมัติ" },
+  ekReasons: { LOWSCORE: "คะแนนเทียบใบหน้าต่ำกว่าเกณฑ์อนุมัติอัตโนมัติ (90%)" },
+  rejReasons: { BLUR: "รูปบัตรไม่ชัดหรือไม่ครบทั้งใบ", EXPIRED: "บัตรหมดอายุ", NAME: "ชื่อในบัตรไม่ตรงกับชื่อบัญชี", FACE: "ใบหน้าไม่ตรงกับรูปบนบัตร", LIVE: "ตรวจคนจริงไม่ผ่าน", DUP: "เลขบัตรนี้ถูกใช้กับบัญชีอื่นแล้ว", FAKE: "สงสัยว่าเป็นเอกสารปลอมหรือถ่ายจากหน้าจอ", OTHER: "อื่น ๆ" },
+  rejBy: "ตรวจโดย {b} · {d}",
+  // admin review
+  aReviewKyc: "ตรวจ KYC", aViewKyc: "ดูผล KYC", krTitle: "ตรวจสอบการยืนยันตัวตน", krClose: "ปิด", krSubmitted: "ส่งเมื่อ {d}",
+  krSecEkyc: "ผลตรวจอัตโนมัติ (e-KYC)", krSecDocs: "เอกสารและใบหน้า", krSecData: "เทียบข้อมูล", krSecConsent: "ความยินยอม", krSecCheck: "รายการตรวจของเจ้าหน้าที่", krSecDecide: "ผลการตรวจ",
+  krCard: "บัตรประชาชน (ด้านหน้า)", krSelfie: "ภาพจากการตรวจใบหน้า", krScore: "คะแนนเทียบใบหน้า", krThr: "เกณฑ์: ≥ 90% อนุมัติอัตโนมัติ · 70–89% ให้เจ้าหน้าที่ตรวจ · < 70% ไม่ผ่าน",
+  krCols: ["ข้อมูล", "อ่านจากบัตร (OCR)", "ลูกค้ากรอก / บัญชี", ""], krFields: { name: "ชื่อ-นามสกุล", id: "เลขประจำตัวประชาชน", dob: "วันเกิด", exp: "วันหมดอายุบัตร", acct: "ชื่อในบัญชี" },
+  krDup: "ตรวจเลขบัตรซ้ำ", krDupNone: "ไม่ซ้ำกับบัญชีอื่น", krDupHit: "ซ้ำกับ {n} บัญชี: {list}", krExpOk: "ยังไม่หมดอายุ", krExpBad: "หมดอายุแล้ว",
+  krChecks: ["ยินยอมครบทุกข้อที่บังคับ และยังไม่ถอนความยินยอม", "รูปบัตรชัด เห็นครบทั้งใบ เป็นบัตรจริง ไม่ใช่ถ่ายจากหน้าจอหรือสำเนา", "ชื่อและเลขบัตรตรงกับข้อมูลบัญชี บัตรยังไม่หมดอายุ", "ใบหน้าในภาพตรวจตรงกับรูปบนบัตร", "เลขบัตรไม่ซ้ำกับบัญชีอื่น"],
+  krReason: "เหตุผลที่ไม่อนุมัติ", krReasonPh: "เลือกเหตุผล", krNote: "หมายเหตุถึงลูกค้า (ไม่บังคับ)", krNotePh: "เช่น กรุณาถ่ายบัตรในที่แสงสว่างพอ ไม่มีแสงสะท้อน",
+  krApprove: "อนุมัติ KYC", krReject: "ไม่อนุมัติ", krErrChecks: "ติ๊กรายการตรวจให้ครบทุกข้อก่อนอนุมัติ", krErrReason: "กรุณาเลือกเหตุผลที่ไม่อนุมัติ",
+  krReadOnly: "บทบาทของคุณดูได้อย่างเดียว ไม่มีสิทธิ์อนุมัติ KYC", krDone: "ตรวจแล้ว: {r} โดย {b} · {d}", krApproved: "อนุมัติ", krRejected: "ไม่อนุมัติ",
+  krNoRec: "ผู้ใช้นี้ยังไม่ได้ส่งข้อมูล KYC", krOkToast: "อนุมัติ KYC ของ {n} แล้ว", krNoToast: "ไม่อนุมัติ KYC ของ {n} แล้ว ระบบแจ้งเหตุผลให้ลูกค้า",
+  krHintAuto: "ระบบ e-KYC อนุมัติเคสนี้อัตโนมัติแล้ว", krSuggest: "ข้อแนะนำจากระบบ",
+});
+Object.assign(T.en, {
+  ekBadge: "e-KYC", ekDemo: "Simulated e-KYC", ekScenTitle: "e-KYC demo mode", ekScenSub: "Pick the outcome to show — demo only. A live system decides from the actual checks.",
+  ekScens: [["pass", "Auto-approve", "Face match ≥ 90%"], ["review", "Needs review", "Face match 70–89%"], ["fail", "Rejected", "Face mismatch < 70%"]],
+  ocrReading: "Reading your ID card…", ocrDone: "Details read from your card automatically (OCR). Please check and correct anything that’s wrong.", ocrHint: "Take or upload your card — we’ll fill in the details for you.",
+  liveTitle: "Face check & liveness", liveSub: "Follow the on-screen prompts — about 5 seconds.", liveStart: "Start face check", liveRetry: "Check again",
+  livePrompts: ["Look straight at the camera", "Blink twice", "Slowly turn your head left", "Slowly turn your head right"], liveDone: "Liveness check passed", liveIdle: "Position your face inside the frame", eLive: "Please complete the face check first",
+  procTitle: "Verifying with e-KYC", procSub: "Don’t close this page — it takes a few seconds.",
+  procSteps: ["Checking ID card details (OCR)", "Checking card status with the Department of Provincial Administration (simulated)", "Liveness check", "Matching your face to the card photo"],
+  ekOkTitle: "Identity verified", ekOkSub: "e-KYC approved you automatically — verified features are available now.",
+  ekRevTitle: "Sent for manual review", ekRevSub: "e-KYC wasn’t confident enough to auto-approve. Our team will review within 1–2 business days and notify you in-app and by email.",
+  ekRejTitle: "Verification not approved", ekRejSub: "Reason:", ekRetry: "Resubmit", ekResult: "e-KYC results",
+  ekRows: { ocr: "ID card read (OCR)", dopa: "Card status (DOPA)", live: "Liveness", face: "Face match" }, ekOk: "Passed", ekWarn: "Needs review", ekBad: "Failed", ekCardOk: "Card valid",
+  ekDecision: { AUTO_PASS: "Auto-approved", REVIEW: "Awaiting review", AUTO_FAIL: "Auto-rejected" },
+  ekReasons: { LOWSCORE: "Face-match score below the auto-approval threshold (90%)" },
+  rejReasons: { BLUR: "ID photo is blurry or cropped", EXPIRED: "ID card has expired", NAME: "Name on card doesn’t match the account", FACE: "Face doesn’t match the card photo", LIVE: "Liveness check failed", DUP: "This ID number is already used by another account", FAKE: "Suspected fake document or photo of a screen", OTHER: "Other" },
+  rejBy: "Reviewed by {b} · {d}",
+  aReviewKyc: "Review KYC", aViewKyc: "View KYC", krTitle: "Identity verification review", krClose: "Close", krSubmitted: "Submitted {d}",
+  krSecEkyc: "Automated checks (e-KYC)", krSecDocs: "Documents & face", krSecData: "Data comparison", krSecConsent: "Consents", krSecCheck: "Reviewer checklist", krSecDecide: "Decision",
+  krCard: "ID card (front)", krSelfie: "Face-check capture", krScore: "Face-match score", krThr: "Thresholds: ≥ 90% auto-approve · 70–89% manual review · < 70% reject",
+  krCols: ["Field", "Read from card (OCR)", "Entered / account", ""], krFields: { name: "Full name", id: "ID number", dob: "Date of birth", exp: "Card expiry", acct: "Account name" },
+  krDup: "Duplicate ID check", krDupNone: "Not used by any other account", krDupHit: "Matches {n} account(s): {list}", krExpOk: "Not expired", krExpBad: "Expired",
+  krChecks: ["All required consents given and not withdrawn", "Card photo is clear, complete and genuine — not a screen or photocopy", "Name and ID match the account; card not expired", "Face in the capture matches the card photo", "ID number not used by another account"],
+  krReason: "Rejection reason", krReasonPh: "Choose a reason", krNote: "Note to customer (optional)", krNotePh: "e.g. Please photograph your card in good light without glare",
+  krApprove: "Approve KYC", krReject: "Reject", krErrChecks: "Tick every checklist item before approving", krErrReason: "Please choose a rejection reason",
+  krReadOnly: "Your role can view only — no KYC approval permission", krDone: "Reviewed: {r} by {b} · {d}", krApproved: "Approved", krRejected: "Rejected",
+  krNoRec: "This user hasn’t submitted KYC yet", krOkToast: "Approved KYC for {n}", krNoToast: "Rejected KYC for {n} — the reason was sent to the customer",
+  krHintAuto: "e-KYC already auto-approved this case", krSuggest: "System suggestion",
+});
+
+/* ===== Lender / financial institution role ===== */
+const EMPTY_LD = { coName: "", coReg: "", licType: "", licNo: "", prods: {}, min: "", max: "", rate: "", regions: {}, cName: "", cPos: "", cPhone: "", cEmail: "" };
+Object.assign(T.th, {
+  ldTitle: "ข้อมูลบริษัทสินเชื่อ / สถาบันการเงิน", ldSub: "สมัครในนามนิติบุคคล ทีมงานจะตรวจเอกสารบริษัทและใบอนุญาต (KYB) ก่อนเปิดรับคำขอสินเชื่อจากผู้ใช้",
+  ldCoName: "ชื่อนิติบุคคล", ldCoNamePh: "เช่น บริษัท ตัวอย่าง แคปปิตอล จำกัด", ldCoReg: "เลขทะเบียนนิติบุคคล 13 หลัก", ldLicType: "ประเภทผู้ให้สินเชื่อ", ldLicPh: "เลือกประเภท",
+  ldLicTypes: ["ธนาคารพาณิชย์", "สถาบันการเงินเฉพาะกิจของรัฐ", "บริษัทเงินทุน / บริษัทสินเชื่อ", "ผู้ประกอบธุรกิจสินเชื่อนาโนไฟแนนซ์", "ผู้ประกอบธุรกิจสินเชื่อพิโกไฟแนนซ์", "สหกรณ์ออมทรัพย์ / สหกรณ์เครดิตยูเนี่ยน", "นักลงทุนสถาบัน / กองทุน", "อื่น ๆ"],
+  ldLicNo: "เลขที่ใบอนุญาต / หนังสืออนุญาตประกอบธุรกิจ", ldLicNoPh: "ระบุตามเอกสารที่ได้รับจากหน่วยงานกำกับ", ldProds: "ผลิตภัณฑ์สินเชื่อที่ให้บริการ (เลือกได้หลายข้อ)",
+  ldProdList: ["สินเชื่อบ้าน / ซื้อที่อยู่อาศัย", "รีไฟแนนซ์", "สินเชื่อบ้านแลกเงิน", "รับจำนอง", "รับซื้อฝาก (ขายฝาก)", "สินเชื่อรีโนเวท / ต่อเติม", "สินเชื่อสำหรับนักลงทุนอสังหาฯ", "สินเชื่อธุรกิจ (มีหลักประกัน)"],
+  ldMin: "วงเงินต่ำสุด (บาท)", ldMax: "วงเงินสูงสุด (บาท)", ldRate: "ดอกเบี้ยเริ่มต้น (% ต่อปี, ไม่บังคับ)", ldRegions: "พื้นที่ให้บริการ", ldAllTh: "ทั่วประเทศ",
+  ldContact: "ผู้ประสานงาน", ldCName: "ชื่อ-นามสกุล", ldCPos: "ตำแหน่ง", ldCPhone: "เบอร์ติดต่อ", ldCEmail: "อีเมลสำหรับรับคำขอสินเชื่อ",
+  ldNote: "คำขอสินเชื่อจะส่งถึงบริษัทเฉพาะเมื่อผู้ใช้ให้ความยินยอม (สูงสุด 3 แห่งต่อคำขอ) ตามพ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล",
+  eLdLic: "กรุณาเลือกประเภท", eLdProds: "เลือกอย่างน้อย 1 ผลิตภัณฑ์", eLdRange: "วงเงินสูงสุดต้องมากกว่าต่ำสุด", eLdRegions: "เลือกพื้นที่ให้บริการ",
+  ldBadge: "บริษัทสินเชื่อ", ldLicShort: "ใบอนุญาต",
+  ldCtaEyebrow: "สำหรับบริษัทสินเชื่อและสถาบันการเงิน", ldCtaTitle: "ร่วมเป็นพาร์ทเนอร์สินเชื่อกับ Estate Plus", ldCtaSub: "รับคำขอสินเชื่อจากเจ้าของอสังหาฯ และผู้ซื้อที่ยืนยันตัวตนแล้ว พร้อมข้อมูลทรัพย์และประวัติการดูแล ช่วยประเมินได้เร็วขึ้น",
+  ldCtaPoints: [["ลูกค้าคุณภาพ", "ผู้ขอสินเชื่อผ่านการยืนยันตัวตน (KYC) แล้ว"], ["ข้อมูลทรัพย์ครบ", "ประวัติการดูแลและการประเมินในระบบเดียว"], ["ได้รับความยินยอมถูกต้อง", "ส่งต่อข้อมูลเฉพาะเมื่อลูกค้ายินยอม สูงสุด 3 แห่ง"]],
+  ldCtaBtn: "สมัครเป็นพาร์ทเนอร์สินเชื่อ",
+});
+Object.assign(T.en, {
+  ldTitle: "Lender / financial institution details", ldSub: "Register as a legal entity. Our team verifies company documents and licences (KYB) before you can receive loan requests.",
+  ldCoName: "Registered company name", ldCoNamePh: "e.g. Sample Capital Co., Ltd.", ldCoReg: "13-digit company registration no.", ldLicType: "Lender type", ldLicPh: "Choose a type",
+  ldLicTypes: ["Commercial bank", "Specialised financial institution (state)", "Finance / credit company", "Nano-finance operator", "Pico-finance operator", "Savings / credit union cooperative", "Institutional investor / fund", "Other"],
+  ldLicNo: "Licence / permit number", ldLicNoPh: "As shown on your regulator-issued document", ldProds: "Loan products offered (choose any)",
+  ldProdList: ["Home purchase loans", "Refinancing", "Home-equity loans", "Mortgage lending", "Sale-leaseback (khai fak) funding", "Renovation loans", "Property-investor loans", "Secured business loans"],
+  ldMin: "Minimum amount (THB)", ldMax: "Maximum amount (THB)", ldRate: "Starting rate (% p.a., optional)", ldRegions: "Service area", ldAllTh: "Nationwide",
+  ldContact: "Contact person", ldCName: "Full name", ldCPos: "Position", ldCPhone: "Phone", ldCEmail: "Email for loan requests",
+  ldNote: "Loan requests reach you only with the customer’s consent (up to 3 lenders per request) under Thailand’s PDPA.",
+  eLdLic: "Please choose a type", eLdProds: "Choose at least one product", eLdRange: "Maximum must be greater than minimum", eLdRegions: "Choose a service area",
+  ldBadge: "Lender", ldLicShort: "Licence",
+  ldCtaEyebrow: "For lenders & financial institutions", ldCtaTitle: "Become an Estate Plus lending partner", ldCtaSub: "Receive loan requests from verified owners and buyers, with property details and care history in one place for faster assessment.",
+  ldCtaPoints: [["Quality applicants", "Every applicant has passed identity verification (KYC)"], ["Complete property data", "Care history and valuation in one system"], ["Proper consent", "Data shared only with customer consent, up to 3 lenders"]],
+  ldCtaBtn: "Apply as a lending partner",
+});
+T.th.roles = [...T.th.roles, ["LENDER", "บริษัทสินเชื่อ / สถาบันการเงิน"]];
+T.en.roles = [...T.en.roles, ["LENDER", "Lender / financial institution"]];
+T.th.roleNames = { ...T.th.roleNames, LENDER: "บริษัทสินเชื่อ" };
+T.en.roleNames = { ...T.en.roleNames, LENDER: "Lender" };
+
 const pill = (on) => ({ minWidth: 44, minHeight: 36, padding: "0 12px", borderRadius: 999, border: 0, cursor: "pointer", fontWeight: 700, fontSize: 13, background: on ? "#fff" : "transparent", color: on ? "oklch(0.3 0.06 170)" : "oklch(0.5 0.02 170)", boxShadow: on ? "0 1px 3px rgba(20,40,35,.15)" : "none" });
 
 class Component extends DCLogic {
-  state = { lang: null, w: typeof window !== "undefined" ? window.innerWidth : 1200, tab: "SALE", filter: "ALL", favs: {}, toast: "", view: "home", hpCat: "", hpQ: "", hpOpen: null, hpFb: {}, docOpen: null, kycStep: 0, kc: {}, kcErr: {}, kcAt: null, kid: {}, kidErr: {}, kFront: "", kSelfie: "", kConfirm: false, kConfirmErr: "", kWd: false, kycRec: null, svcs: [], svn: null, svnErr: {}, svnImgs: [], svnFormErr: "", svnDone: "", f: { ...EMPTY_F }, code: "", gi: 0, sheet: false, heroQ: "", heroPt: "", msgs: {}, visit: {}, sent: {}, r: { ...EMPTY_R }, errs: {}, formErr: "", pwShow: false, otp: null, otpIn: ["", "", "", "", "", ""], otpErr: "", mailOpen: false, user: null, accounts: [], loginErr: "", menu: false, now: Date.now(), afterLogin: null, mine: [], inquiries: [], dtab: "overview", kyc: "NONE", n: { ...EMPTY_N }, nimgs: [], nerrs: {}, nFormErr: "", created: "", cp: { cur: "", n1: "", n2: "" }, cpErr: {}, pwOk: false, devRevoked: false, jobs: [], q: { ...EMPTY_Q }, qErr: {}, calc: { amt: "1000000", rate: 12, term: 12 }, pay: null, payStage: "select", payMethod: "promptpay", card: { ...EMPTY_CARD }, cardErr: {}, bankSel: -1, walletSel: -1, wPhone: "", payErr: "", inst: 6, paidVia: "", txns: [], booked: {}, loans: [], lf: { ...EMPTY_L }, lfErr: {}, lfSent: false, fc: { price: "3500000", down: 10, rate: 6, years: 30 }, store: seedStore(), acctStatus: {}, hidden: {}, atab: "overview", aq: "", afilter: "all", audit: [{ at: Date.now() - DAY, key: "seed", n: "", by: "System" }], pvRegion: 2, pvProv: "", staffRole: {}, payouts: { EP2609110417: Date.now() - 25 * DAY }, acPeriod: "all", sfForm: { first: "", last: "", email: "", role: "SUPPORT" }, sfErr: {}, sfCreated: null, bills: [], notif: { app: true, sms: true, email: true, line: false, days: 3 }, readN: {}, notifOpen: false, trackId: null };
+  state = { lang: null, w: typeof window !== "undefined" ? window.innerWidth : 1200, tab: "SALE", filter: "ALL", favs: {}, toast: "", view: "home", hpCat: "", hpQ: "", hpOpen: null, hpFb: {}, docOpen: null, kycStep: 0, kc: {}, kcErr: {}, kcAt: null, kid: {}, kidErr: {}, kFront: "", kSelfie: "", kConfirm: false, kConfirmErr: "", kWd: false, kycRec: null, kOcr: "idle", kOcrData: null, kLive: "idle", kLiveStep: 0, kProcN: 0, kScen: "pass", kycRev: null, krChk: {}, krReason: "", krNote: "", krErr: "", svcs: [], svn: null, svnErr: {}, svnImgs: [], svnFormErr: "", svnDone: "", f: { ...EMPTY_F }, code: "", gi: 0, sheet: false, heroQ: "", heroPt: "", msgs: {}, visit: {}, sent: {}, r: { ...EMPTY_R }, errs: {}, formErr: "", pwShow: false, otp: null, otpIn: ["", "", "", "", "", ""], otpErr: "", mailOpen: false, user: null, accounts: [], loginErr: "", menu: false, now: Date.now(), afterLogin: null, mine: [], inquiries: [], dtab: "overview", kyc: "NONE", n: { ...EMPTY_N }, nimgs: [], nerrs: {}, nFormErr: "", created: "", cp: { cur: "", n1: "", n2: "" }, cpErr: {}, pwOk: false, devRevoked: false, jobs: [], q: { ...EMPTY_Q }, qErr: {}, calc: { amt: "1000000", rate: 12, term: 12 }, pay: null, payStage: "select", payMethod: "promptpay", card: { ...EMPTY_CARD }, cardErr: {}, bankSel: -1, walletSel: -1, wPhone: "", payErr: "", inst: 6, paidVia: "", txns: [], booked: {}, loans: [], lf: { ...EMPTY_L }, lfErr: {}, lfSent: false, fc: { price: "3500000", down: 10, rate: 6, years: 30 }, store: seedStore(), acctStatus: {}, hidden: {}, atab: "overview", aq: "", afilter: "all", audit: [{ at: Date.now() - DAY, key: "seed", n: "", by: "System" }], pvRegion: 2, pvProv: "", staffRole: {}, payouts: { EP2609110417: Date.now() - 25 * DAY }, acPeriod: "all", sfForm: { first: "", last: "", email: "", role: "SUPPORT" }, sfErr: {}, sfCreated: null, bills: [], notif: { app: true, sms: true, email: true, line: false, days: 3 }, readN: {}, notifOpen: false, trackId: null };
   fnFormRef = React.createRef();
   svImgRef = React.createRef();
   setSvImg() { const el = this.svImgRef.current; if (el && el.dataset.set !== "1") { el.dataset.set = "1"; el.src = U("photo-1581578731548-c64695cc6952", 1100); } }
@@ -3601,8 +3876,8 @@ class Component extends DCLogic {
   }
   freshSvn() { return { svn: { ...EMPTY_SVN, days: { ...EMPTY_SVN.days } }, svnErr: {}, svnImgs: [], svnFormErr: "", svnDone: "", svnOpen: { 0: true } }; }
   openSvn() { this.go("newsvc", this.freshSvn()); }
-  openKyc(fresh) { const s = this.state, u = s.user; const showRec = !fresh && s.kycRec && s.kyc !== "REJECTED";
-    this.go("kyc", showRec ? { kycStep: "done", kWd: false } : { kycStep: 0, kc: {}, kcErr: {}, kcAt: null, kid: { name: u ? `${u.first} ${u.last}` : "" }, kidErr: {}, kFront: "", kSelfie: "", kConfirm: false, kConfirmErr: "", kWd: false }); }
+  openKyc(fresh) { clearTimeout(this.ocrT); clearInterval(this.liveT); clearInterval(this.procT); const s = this.state, u = s.user; const showRec = !fresh && s.kycRec && s.kyc !== "REJECTED";
+    this.go("kyc", showRec ? { kycStep: "done", kWd: false } : { kycStep: 0, kc: {}, kcErr: {}, kcAt: null, kid: { name: u ? `${u.first} ${u.last}` : "" }, kidErr: {}, kFront: "", kSelfie: "", kConfirm: false, kConfirmErr: "", kWd: false, kOcr: "idle", kOcrData: null, kLive: "idle", kLiveStep: 0, kProcN: 0 }); }
   swapTo(user) { this.setState((s) => { const prev = s.user ? s.user.email : "__guest", next = user ? user.email : "__guest"; const store = { ...s.store, [prev]: pickSlice(s) }; return { ...emptySlice(), ...(store[next] || {}), store, user, dtab: "overview" }; }); }
   signIn(user, t) {
     const next = this.state.afterLogin, isA = user.role === "admin";
@@ -3794,6 +4069,10 @@ class Component extends DCLogic {
         } else { if (!idOk(p.coReg)) pe.coReg = p.coReg ? t.eCoReg : t.eReq; if (!p.coName.trim()) pe.coName = t.eReq; if (!p.coAddr.trim()) pe.coAddr = t.eReq; }
         if (!Object.values(p.cats).some(Boolean)) pe.cats = t.eCats; if (!Object.keys(p.areas).length) pe.areas = t.eAreas;
         if (Object.keys(pe).length) e.pv = pe; }
+      if (r.roles.LENDER) { const q = { ...EMPTY_LD, ...(r.ld || {}) }, le = {}; if (!q.coName.trim()) le.coName = t.eReq; if (!idOk(q.coReg)) le.coReg = q.coReg ? t.eCoReg : t.eReq; if (q.licType === "") le.licType = t.eLdLic; if (!q.licNo.trim()) le.licNo = t.eReq;
+        if (!Object.values(q.prods).some(Boolean)) le.prods = t.eLdProds; if (+q.max && +q.min && +q.max <= +q.min) le.max = t.eLdRange; if (!Object.values(q.regions).some(Boolean)) le.regions = t.eLdRegions;
+        if (!q.cName.trim()) le.cName = t.eReq; if (!/^0\d{8,9}$/.test(String(q.cPhone).replace(/\D/g, ""))) le.cPhone = q.cPhone ? t.ePhone : t.eReq; if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q.cEmail)) le.cEmail = q.cEmail ? t.eEmail : t.eReq;
+        if (Object.keys(le).length) e.ld = le; }
       return e;
     };
     const otp = st.otp, otpLeft = otp ? Math.max(0, Math.ceil((otp.at + 60000 - st.now) / 1000)) : 0;
@@ -3890,11 +4169,11 @@ class Component extends DCLogic {
       emailTips: t.emailTips.map((text, i) => ({ n: i + 1, text })),
       openMail: () => this.setState({ mailOpen: true }), closeMail: () => this.setState({ mailOpen: false }), mailOpen: st.mailOpen,
       resendMail: () => this.showToast(t.mailResent), mailHello: t.mailHello.replace("{n}", r.first),
-      verifyEmail: () => { const user = { first: r.first, last: r.last, phone: normPhone(r.phone), email: r.email.toLowerCase(), pw: r.pw, role: "user", roles: Object.keys(r.roles).filter((k) => r.roles[k]), acct: r.acct, joined: Date.now(), provider: r.roles.PROVIDER ? { ...r.pv } : null };
-        this.setState((s) => ({ mailOpen: false, user, accounts: [...s.accounts, user], kyc: r.roles.PROVIDER ? "PENDING" : s.kyc })); this.go("done"); },
+      verifyEmail: () => { const user = { first: r.first, last: r.last, phone: normPhone(r.phone), email: r.email.toLowerCase(), pw: r.pw, role: "user", roles: Object.keys(r.roles).filter((k) => r.roles[k]), acct: r.acct, joined: Date.now(), provider: r.roles.PROVIDER ? { ...r.pv } : null, lender: r.roles.LENDER ? { ...EMPTY_LD, ...(r.ld || {}) } : null };
+        this.setState((s) => ({ mailOpen: false, user, accounts: [...s.accounts, user], kyc: r.roles.LENDER ? "PENDING" : "NONE", kycRec: null })); this.go("done"); },
       doneSub: t.doneSub.replace("{n}", r.first),
       nextSteps: t.nextSteps.map(([title, desc], i) => ({ title, desc, icon: [ICX.shield, IC.plus, IC.search][i], color: [MC.SALE[0], MC.SALE_LEASEBACK[0], MC.RENT[0]][i], soft: [MC.SALE[1], MC.SALE_LEASEBACK[1], MC.RENT[1]][i],
-        onClick: i === 2 ? () => toList("") : i === 1 ? () => this.go("new", { n: { ...EMPTY_N }, nimgs: [], nerrs: {}, nFormErr: "" }) : () => this.go("dashboard", { dtab: "overview" }) })),
+        onClick: i === 2 ? () => toList("") : i === 1 ? () => this.go("new", { n: { ...EMPTY_N }, nimgs: [], nerrs: {}, nFormErr: "" }) : () => this.openKyc(true) })),
       loginErr: st.loginErr,
       onLogin: (e) => { e.preventDefault(); const id = r.loginId.trim().toLowerCase(), ph = normPhone(id);
         const acct = allAccts.find((a) => (a.email === id || (ph && a.phone === ph)) && a.pw === r.loginPw);
@@ -4246,13 +4525,14 @@ class Component extends DCLogic {
     const L = (key, n) => this.admLog(key, n);
     const avS = (bg, fg) => ({ width: 44, height: 44, borderRadius: 14, flex: "none", display: "flex", alignItems: "center", justifyContent: "center", background: bg, color: fg, position: "relative" });
     const initHidden = { display: "none" }, initShow = { fontFamily: "Anuphan,sans-serif", fontWeight: 700, fontSize: 17 };
-    const userRow = (a) => { const k = sl(a.email).kyc || "NONE", susp = st.acctStatus[a.email] === "SUSPENDED", nm = a.first + " " + a.last;
+    const userRow = (a) => { const kr0 = sl(a.email).kycRec, k = sl(a.email).kyc || "NONE", susp = st.acctStatus[a.email] === "SUSPENDED", nm = a.first + " " + a.last;
       const acts = [];
-      if (k === "PENDING" && can("users.kyc")) { acts.push(act(t.aApprove, () => { this.updSlice(a.email, () => ({ kyc: "VERIFIED" })); L("kycOk", nm); }, "p")); acts.push(act(t.aReject, () => { this.updSlice(a.email, () => ({ kyc: "REJECTED" })); L("kycNo", nm); }, "d")); }
+      if (kr0) acts.push(act(k === "PENDING" && can("users.kyc") ? t.aReviewKyc : t.aViewKyc, () => this.setState({ kycRev: a.email, krChk: {}, krReason: "", krNote: "", krErr: "" }), k === "PENDING" ? "p" : undefined));
+      else if (k === "PENDING" && can("users.kyc")) { acts.push(act(t.aApprove, () => { this.updSlice(a.email, () => ({ kyc: "VERIFIED" })); L("kycOk", nm); }, "p")); acts.push(act(t.aReject, () => { this.updSlice(a.email, () => ({ kyc: "REJECTED" })); L("kycNo", nm); }, "d")); }
       if (can("users.suspend")) acts.push(susp ? act(t.aActivate, () => { this.setState((s) => ({ acctStatus: { ...s.acctStatus, [a.email]: "ACTIVE" } })); L("act", nm); }) : act(t.aSuspend, () => { this.setState((s) => ({ acctStatus: { ...s.acctStatus, [a.email]: "SUSPENDED" } })); L("susp", nm); }, "d"));
       return { hasAvatar: true, avatar: a.first.slice(0, 1), icon: "", avStyle: avS("oklch(0.95 0.04 70)", "oklch(0.48 0.1 60)"), initStyle: initShow, title: nm,
-        sub: a.email + " · " + a.phone + " · " + t.joinedOn.replace("{d}", fmtDT(a.joined || Date.now(), false)) + (a.provider ? " · " + (a.provider.type === "COMPANY" ? a.provider.coName + " (" + maskId(a.provider.coReg) + ")" : "ID " + maskId(a.provider.idNo) + (a.provider.line ? " · LINE " + a.provider.line : "")) : ""),
-        chips: (a.roles || []).filter((rk) => !(a.provider && rk === "PROVIDER")).map((rk) => chip(t.roleNames[rk], C_N)).concat(a.provider ? [chip(a.provider.type === "COMPANY" ? t.pvBadgeCo : t.pvBadgeInd, ["oklch(0.94 0.035 30)", "oklch(0.5 0.13 30)"])] : [], [chip(t.kycSt[k], k === "VERIFIED" ? C_OK : k === "PENDING" ? C_WARN : k === "REJECTED" ? C_BAD : C_N), chip(susp ? t.suspended : t.active, susp ? C_BAD : C_OK)]), actions: acts, _k: k, _susp: susp };
+        sub: a.email + " · " + a.phone + " · " + t.joinedOn.replace("{d}", fmtDT(a.joined || Date.now(), false)) + (a.provider ? " · " + (a.provider.type === "COMPANY" ? a.provider.coName + " (" + maskId(a.provider.coReg) + ")" : "ID " + maskId(a.provider.idNo) + (a.provider.line ? " · LINE " + a.provider.line : "")) : "") + (a.lender ? " · " + a.lender.coName + " · " + t.ldLicShort + " " + a.lender.licNo : ""),
+        chips: (a.roles || []).filter((rk) => !(a.provider && rk === "PROVIDER")).map((rk) => chip(t.roleNames[rk], C_N)).concat(a.provider ? [chip(a.provider.type === "COMPANY" ? t.pvBadgeCo : t.pvBadgeInd, ["oklch(0.94 0.035 30)", "oklch(0.5 0.13 30)"])] : [], [chip(t.kycSt[k], k === "VERIFIED" ? C_OK : k === "PENDING" ? C_WARN : k === "REJECTED" ? C_BAD : C_N), ...(kr0 && kr0.ekyc ? [chip("e-KYC " + kr0.ekyc.face + "%", kr0.ekyc.face >= EK_THR.pass ? C_OK : kr0.ekyc.face >= EK_THR.review ? C_WARN : C_BAD)] : []), chip(susp ? t.suspended : t.active, susp ? C_BAD : C_OK)]), actions: acts, _k: k, _susp: susp };
     };
     const allListings = [...users.flatMap((a) => sl(a.email).mine.map((p) => ({ ...p, uid: a.email }))), ...DATA];
     const listingRow = (p) => { const hid = !!st.hidden[p.code], own = !!p.uid;
@@ -4491,24 +4771,38 @@ class Component extends DCLogic {
       close: () => this.setState({ docOpen: null }), canAccept: !!dk && st.view === "kyc" && st.kycStep === 0,
       accept: () => this.setState((s) => ({ docOpen: null, kc: { ...s.kc, [dk]: true }, kcErr: { ...s.kcErr, [dk]: "" } })) };
     // KYC wizard
-    const kStep = st.kycStep, kStepN = typeof kStep === "number" ? kStep : 4, kc = st.kc || {}, kcE = st.kcErr || {}, kid = st.kid || {}, kidE = st.kidErr || {}, rec = st.kycRec;
+    const kStep = st.kycStep, kStepN = typeof kStep === "number" ? kStep : kStep === "proc" ? 3 : 4, kc = st.kc || {}, kcE = st.kcErr || {}, kid = st.kid || {}, kidE = st.kidErr || {}, rec = st.kycRec;
     const kGo = (n, extra = {}) => { this.setState({ kycStep: n, ...extra }); window.scrollTo({ top: 0, behavior: "smooth" }); };
     const setKid = (k, fn) => (e) => { const v = fn ? fn(e.target.value) : e.target.value; this.setState((s) => ({ kid: { ...s.kid, [k]: v }, kidErr: { ...s.kidErr, [k]: "" } })); };
     const pickImg = (key, errKey) => (e) => { const f = e.target.files && e.target.files[0]; if (f) this.setState((s) => ({ [key]: URL.createObjectURL(f), kidErr: { ...s.kidErr, [errKey]: "" } })); try { e.target.value = ""; } catch (x) {} };
-    const demoCard = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 856 540"><rect width="856" height="540" rx="36" fill="#e9f1ee"/><rect width="856" height="96" rx="36" fill="#2d5b50"/><rect y="60" width="856" height="36" fill="#2d5b50"/><text x="40" y="62" font-family="sans-serif" font-size="34" font-weight="700" fill="#fff">SAMPLE ID CARD · DEMO</text><rect x="40" y="140" width="460" height="26" rx="8" fill="#b9cbc5"/><rect x="40" y="196" width="380" height="22" rx="8" fill="#cfdcd8"/><rect x="40" y="246" width="420" height="22" rx="8" fill="#cfdcd8"/><rect x="40" y="296" width="300" height="22" rx="8" fill="#cfdcd8"/><rect x="40" y="430" width="340" height="22" rx="8" fill="#cfdcd8"/><rect x="600" y="150" width="210" height="260" rx="20" fill="#c6d6d1"/><circle cx="705" cy="245" r="52" fill="#9fb7b0"/><path d="M620 400c10-70 60-100 85-100s75 30 85 100z" fill="#9fb7b0"/></svg>');
-    const demoFace = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#dfe9e5"/><circle cx="200" cy="165" r="78" fill="#c9a888"/><path d="M70 400c14-96 70-140 130-140s116 44 130 140z" fill="#2d5b50"/><path d="M122 150c0-55 36-86 78-86s78 31 78 86c-18-30-44-40-78-40s-60 10-78 40z" fill="#3b2f2a"/><circle cx="172" cy="170" r="7" fill="#3b2f2a"/><circle cx="228" cy="170" r="7" fill="#3b2f2a"/><path d="M178 205c12 10 32 10 44 0" stroke="#3b2f2a" stroke-width="6" fill="none" stroke-linecap="round"/></svg>');
+    const demoCard = KYC_CARD, demoFace = KYC_FACE;
     const kImg = (v, demo) => (v === "demo" ? demo : v);
     const kToday = new Date().toISOString().slice(0, 10);
     const demoId = (() => { const b = "110370012345"; let s = 0; for (let i = 0; i < 12; i++) s += +b[i] * (13 - i); return b + ((11 - (s % 11)) % 10); })();
     const recItems = rec ? rec.items : [];
+    const startOcr = () => { clearTimeout(this.ocrT); this.setState({ kOcr: "reading" }); this.ocrT = setTimeout(() => this.setState((s) => { const u = s.user; const nm = (s.kid && s.kid.name) || (u ? `${u.first} ${u.last}` : ""); const o = { name: nm, id: demoId, dob: "1990-05-14", exp: "2031-05-13" }; return { kOcr: "done", kOcrData: o, kid: { ...o }, kidErr: {} }; }), 1500); };
+    const finishEkyc = (s) => { const sc = s.kScen || "pass", rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1)), kd = s.kid || {}, at = Date.now(), kcS = s.kc || {};
+      const face = sc === "pass" ? rnd(95, 99) : sc === "review" ? rnd(74, 86) : rnd(41, 58), decision = sc === "pass" ? "AUTO_PASS" : sc === "review" ? "REVIEW" : "AUTO_FAIL";
+      const r2 = { ref: "KYC" + newRef().slice(2), at, name: kd.name || "", idNo: kd.id || "", idMask: maskIdK(kd.id || ""), dob: kd.dob || "", exp: kd.exp || "", front: s.kFront === "demo" ? KYC_CARD : s.kFront, selfie: KYC_FACE,
+        ocr: s.kOcrData || { name: kd.name, id: kd.id, dob: kd.dob, exp: kd.exp }, ekyc: { face, live: true, dopa: "OK", decision, reasons: sc === "review" ? ["LOWSCORE"] : [], provider: "Simulated e-KYC" },
+        items: ["terms", "privacy", "bio", "mkt"].map((k) => ({ k, v: DOC_VER[k], on: !!kcS[k], wd: false, at: s.kcAt || at })),
+        reject: sc === "fail" ? { code: "FACE", note: "", by: "e-KYC", at } : null, review: sc === "pass" ? { by: "e-KYC", at, result: "APPROVED" } : null };
+      return { kyc: sc === "pass" ? "VERIFIED" : sc === "review" ? "PENDING" : "REJECTED", kycRec: r2, kycStep: "done", kWd: false, kProcN: 4 }; };
+    const fmtD = (ts) => new Date(ts).toLocaleString(lang === "th" ? "th-TH" : "en-GB", { dateStyle: "medium", timeStyle: "short" });
+    const rejText = (rj) => (rj ? (t.rejReasons[rj.code] || rj.code) + (rj.note ? " — " + rj.note : "") : "");
+    const ekRow = (label, val, lvl) => ({ label, val, style: { flex: "none", padding: "2px 10px", borderRadius: 999, fontSize: 12, fontWeight: 700, whiteSpace: "nowrap", background: lvl === "ok" ? "oklch(0.94 0.04 165)" : lvl === "warn" ? "oklch(0.95 0.04 70)" : "oklch(0.97 0.02 25)", color: lvl === "ok" ? "oklch(0.4 0.09 165)" : lvl === "warn" ? "oklch(0.48 0.1 60)" : "oklch(0.52 0.16 25)" } });
+    const ekRows = (r) => { if (!r || !r.ekyc) return []; const f = r.ekyc.face, fl = f >= EK_THR.pass ? "ok" : f >= EK_THR.review ? "warn" : "bad";
+      return [ekRow(t.ekRows.ocr, t.ekOk, "ok"), ekRow(t.ekRows.dopa, t.ekCardOk, r.ekyc.dopa === "OK" ? "ok" : "bad"), ekRow(t.ekRows.live, r.ekyc.live ? t.ekOk : t.ekBad, r.ekyc.live ? "ok" : "bad"), ekRow(t.ekRows.face + " " + f + "%", fl === "ok" ? t.ekOk : fl === "warn" ? t.ekWarn : t.ekBad, fl)]; };
+    const liveN = t.livePrompts.length, kLive = st.kLive || "idle", kLiveStep = st.kLiveStep || 0;
     const ky = {
       steps: t.kycSteps.map((label, i) => { const done = i < kStepN, cur = i === kStepN; return { n: done ? "✓" : String(i + 1), label, current: cur ? "step" : undefined, showLabel: !isMobile || cur,
         liStyle: { display: "flex", alignItems: "center", gap: 8, flex: cur || !isMobile ? "1 1 0" : "none", minWidth: 0 },
         dotStyle: { width: 30, height: 30, flex: "none", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, background: done ? "oklch(0.5 0.1 165)" : cur ? "oklch(0.36 0.07 170)" : "oklch(0.95 0.006 95)", color: done || cur ? "#fff" : "oklch(0.5 0.02 170)", boxShadow: cur ? "0 0 0 4px oklch(0.92 0.04 165)" : "none" },
         lblStyle: { fontSize: 13, fontWeight: cur ? 700 : 600, color: cur ? "oklch(0.22 0.02 170)" : "oklch(0.5 0.02 170)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
         barStyle: { flex: 1, height: 2, minWidth: 8, borderRadius: 2, background: done ? "oklch(0.5 0.1 165)" : "oklch(0.92 0.008 95)", display: i === 3 ? "none" : "block" } }; }),
-      stepOf: t.kycStepOf.replace("{n}", Math.min(kStepN + 1, 4)), inWizard: kStepN < 4, isDone: kStep === "done",
-      wasRejected: st.kyc === "REJECTED" && kStepN < 4, seeWhy: () => goHelp("kyc"),
+      stepOf: t.kycStepOf.replace("{n}", Math.min(kStepN + 1, 4)), inWizard: kStepN < 4, isDone: kStep === "done", sProc: kStep === "proc", notProc: kStep !== "proc",
+      wasRejected: st.kyc === "REJECTED" && kStepN < 4, rejNote: rec && rec.reject ? t.ekRejSub + " " + rejText(rec.reject) : "", seeWhy: () => goHelp("kyc"),
+      scens: t.ekScens.map(([k, label, sub]) => { const on = (st.kScen || "pass") === k; return { label, sub, active: on ? "true" : "false", onClick: () => this.setState({ kScen: k }), style: { display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 2, textAlign: "left", padding: "10px 12px", borderRadius: 12, cursor: "pointer", border: on ? "1.5px solid oklch(0.36 0.07 170)" : "1px solid oklch(0.92 0.008 95)", background: on ? "oklch(0.97 0.025 165)" : "#fff", fontSize: 14, fontWeight: 700, color: "oklch(0.25 0.02 170)" } }; }),
       s0: kStep === 0, s1: kStep === 1, s2: kStep === 2, s3: kStep === 3,
       cols: isDesktop ? "minmax(0,1fr) 320px" : "minmax(0,1fr)", asideStyle: { position: isDesktop ? "sticky" : "static", top: 92, display: "flex", flexDirection: "column", gap: 14 },
       // step 0 — consent
@@ -4524,31 +4818,42 @@ class Component extends DCLogic {
       onName: setKid("name"), onIdNo: setKid("id", (v) => v.replace(/\D/g, "").slice(0, 13)), onDob: setKid("dob"), onExp: setKid("exp"),
       err: { name: kidE.name || "", id: kidE.id || "", dob: kidE.dob || "", exp: kidE.exp || "", front: kidE.front || "", selfie: kidE.selfie || "" },
       fs: { name: kInp(kidE.name), id: kInp(kidE.id), dob: kInp(kidE.dob), exp: kInp(kidE.exp) },
-      front: kImg(st.kFront, demoCard), hasFront: !!st.kFront, noFront: !st.kFront, onFront: pickImg("kFront", "front"),
-      demoFront: () => this.setState((s) => ({ kFront: "demo", kidErr: { ...s.kidErr, front: "" } })), clearFront: () => this.setState({ kFront: "" }),
+      front: kImg(st.kFront, demoCard), hasFront: !!st.kFront, noFront: !st.kFront, onFront: (e) => { const f = e.target.files && e.target.files[0]; pickImg("kFront", "front")(e); if (f) startOcr(); },
+      ocrReading: st.kOcr === "reading", ocrDone: st.kOcr === "done", ocrIdle: !st.kOcr || st.kOcr === "idle",
+      demoFront: () => { this.setState((s) => ({ kFront: "demo", kidErr: { ...s.kidErr, front: "" } })); startOcr(); }, clearFront: () => { clearTimeout(this.ocrT); this.setState({ kFront: "", kOcr: "idle" }); },
       frontBox: { position: "relative", borderRadius: 18, border: kidE.front ? "2px dashed oklch(0.62 0.18 25)" : "2px dashed oklch(0.86 0.01 165)", background: kidE.front ? "oklch(0.985 0.01 25)" : "oklch(0.98 0.01 165)", aspectRatio: "856 / 540", maxWidth: 440, width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, color: "oklch(0.42 0.09 165)", fontWeight: 600, fontSize: 14, cursor: "pointer", overflow: "hidden" },
       fillDemo: () => this.setState((s) => ({ kid: { name: s.kid && s.kid.name ? s.kid.name : "ทดลอง ใช้งาน", id: demoId, dob: "1990-05-14", exp: "2031-05-13" }, kidErr: {} })),
-      next1: () => { const e = {}; if (!(kid.name || "").trim()) e.name = t.eReq; if (!thaiIdOk(kid.id || "")) e.id = t.eIdNo; if (!kid.dob) e.dob = t.eReq; if (!kid.exp) e.exp = t.eReq; else if (kid.exp < kToday) e.exp = t.eExp; if (!st.kFront) e.front = t.eIdImg;
+      next1: () => { if (st.kOcr === "reading") return; const e = {}; if (!(kid.name || "").trim()) e.name = t.eReq; if (!thaiIdOk(kid.id || "")) e.id = t.eIdNo; if (!kid.dob) e.dob = t.eReq; if (!kid.exp) e.exp = t.eReq; else if (kid.exp < kToday) e.exp = t.eExp; if (!st.kFront) e.front = t.eIdImg;
         if (Object.keys(e).length) return this.setState({ kidErr: e }); kGo(2); },
       // step 2 — selfie
       bioOk: !!kc.bio, bioOff: !kc.bio, selfie: kImg(st.kSelfie, demoFace), hasSelfie: !!st.kSelfie, noSelfie: !st.kSelfie, onSelfie: pickImg("kSelfie", "selfie"),
       demoSelfie: () => this.setState((s) => ({ kSelfie: "demo", kidErr: { ...s.kidErr, selfie: "" } })), clearSelfie: () => this.setState({ kSelfie: "" }),
       ovalStyle: { position: "relative", width: "min(100%, 280px)", aspectRatio: "3 / 4", borderRadius: "50% / 42%", overflow: "hidden", border: kidE.selfie ? "3px dashed oklch(0.62 0.18 25)" : st.kSelfie ? "3px solid oklch(0.5 0.1 165)" : "3px dashed oklch(0.8 0.04 165)", background: "oklch(0.97 0.012 165)", display: "flex", alignItems: "center", justifyContent: "center", color: "oklch(0.55 0.06 165)" },
-      next2: () => { if (!st.kSelfie) return this.setState((s) => ({ kidErr: { ...s.kidErr, selfie: t.eSelfie } })); kGo(3); },
+      liveIdle: kLive === "idle", liveRun: kLive === "running", liveOk: kLive === "done", notLiveRun: kLive !== "running",
+      livePrompt: kLive === "running" ? t.livePrompts[kLiveStep] : kLive === "done" ? t.liveDone : t.liveIdle,
+      liveStepTxt: kLive === "running" ? `${kLiveStep + 1}/${liveN}` : "",
+      liveDots: t.livePrompts.map((_, i) => ({ style: { width: 10, height: 10, borderRadius: "50%", background: kLive === "done" || i < kLiveStep ? "oklch(0.5 0.1 165)" : kLive === "running" && i === kLiveStep ? "oklch(0.6 0.12 65)" : "oklch(0.9 0.008 95)", transition: "background .3s" } })),
+      faceStyle: { width: "100%", height: "100%", objectFit: "cover", transition: "transform .6s ease, filter .3s", transform: kLive === "running" ? (kLiveStep === 2 ? "translateX(-7%) rotate(-4deg) scale(1.04)" : kLiveStep === 3 ? "translateX(7%) rotate(4deg) scale(1.04)" : "scale(1.04)") : "none", filter: kLive === "running" && kLiveStep === 1 ? "brightness(.82)" : "none" },
+      ringStyle: { position: "relative", width: "min(100%, 280px)", aspectRatio: "3 / 4", borderRadius: "50% / 42%", padding: 6, background: kLive === "done" ? "oklch(0.5 0.1 165)" : kLive === "running" ? `conic-gradient(oklch(0.5 0.1 165) ${Math.round(((kLiveStep + 1) / liveN) * 360)}deg, oklch(0.9 0.02 165) 0deg)` : kidE.selfie ? "oklch(0.62 0.18 25)" : "oklch(0.88 0.03 165)", transition: "background .4s" },
+      startLive: () => { clearInterval(this.liveT); this.setState((s) => ({ kLive: "running", kLiveStep: 0, kSelfie: "", kidErr: { ...s.kidErr, selfie: "" } })); let i = 0;
+        this.liveT = setInterval(() => { i++; if (i >= liveN) { clearInterval(this.liveT); this.setState({ kLive: "done", kLiveStep: liveN, kSelfie: "demo" }); } else this.setState({ kLiveStep: i }); }, 1100); },
+      next2: () => { if (kLive !== "done") return this.setState((s) => ({ kidErr: { ...s.kidErr, selfie: t.eLive } })); kGo(3); },
       // step 3 — review
       rvId: [[t.kidName, kid.name || ""], [t.kidNo, maskIdK(kid.id || "")], [t.kidDob, kid.dob || ""], [t.kidExp, kid.exp || ""]].map(([k, v]) => ({ k, v })),
       rvConsents: ["terms", "privacy", "bio", "mkt"].map((k) => ({ label: t.kcLabels[k], ver: t.kcVer.replace("{v}", DOC_VER[k]), v: kc[k] ? t.krYes : t.krNo, style: { flex: "none", padding: "2px 10px", borderRadius: 999, fontSize: 12, fontWeight: 700, whiteSpace: "nowrap", background: kc[k] ? "oklch(0.94 0.04 165)" : "oklch(0.95 0.006 95)", color: kc[k] ? "oklch(0.4 0.09 165)" : "oklch(0.5 0.02 170)" } })),
       edit0: () => kGo(0), edit1: () => kGo(1), edit2: () => kGo(2),
       confirm: !!st.kConfirm, onConfirm: (e) => this.setState({ kConfirm: e.target.checked, kConfirmErr: "" }), confirmErr: st.kConfirmErr || "",
       confirmStyle: { display: "flex", gap: 12, alignItems: "flex-start", padding: "14px 16px", borderRadius: 16, cursor: "pointer", fontSize: 15, fontWeight: 500, lineHeight: 1.55, border: st.kConfirmErr ? "1.5px solid oklch(0.62 0.18 25)" : "1px solid oklch(0.92 0.008 95)", background: st.kConfirmErr ? "oklch(0.985 0.01 25)" : "oklch(0.985 0.003 95)" },
-      submit: () => { if (!st.kConfirm) return this.setState({ kConfirmErr: t.eConfirm }); const at = Date.now();
-        const r2 = { ref: "KYC" + newRef().slice(2), at, idMask: maskIdK(kid.id || ""), name: kid.name || "", items: ["terms", "privacy", "bio", "mkt"].map((k) => ({ k, v: DOC_VER[k], on: !!kc[k], wd: false, at: st.kcAt || at })) };
-        this.setState({ kyc: "PENDING", kycRec: r2, kConfirmErr: "", kWd: false }); this.showToast(t.kycSent); kGo("done"); },
-      back: () => (kStepN > 0 && kStepN < 4 ? kGo(kStepN - 1) : goDash("overview")),
+      submit: () => { if (!st.kConfirm) return this.setState({ kConfirmErr: t.eConfirm }); kGo("proc", { kProcN: 0, kConfirmErr: "" }); let n = 0; clearInterval(this.procT);
+        this.procT = setInterval(() => { n++; if (n < 4) return this.setState({ kProcN: n }); clearInterval(this.procT); this.setState((s) => finishEkyc(s), () => { const k = this.state.kyc; this.showToast(k === "VERIFIED" ? t.ekOkTitle : k === "PENDING" ? t.ekRevTitle : t.ekRejTitle); }); window.scrollTo({ top: 0, behavior: "smooth" }); }, 850); },
+      procRows: t.procSteps.map((label, i) => { const pn = st.kProcN || 0, done = i < pn, cur = i === pn; return { label, done, cur, wait: !done && !cur,
+        style: { display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", borderRadius: 14, border: "1px solid oklch(0.92 0.008 95)", background: done ? "oklch(0.975 0.02 165)" : "#fff", color: done || cur ? "oklch(0.25 0.02 170)" : "oklch(0.6 0.02 170)", fontWeight: cur ? 700 : 500, fontSize: 15 } }; }),
+      back: () => (kStep === "proc" ? null : kStepN > 0 && kStepN < 4 ? kGo(kStepN - 1) : goDash("overview")),
       // done / consent record
       ref: rec ? rec.ref : "", status: t.kycSt[st.kyc] || "", submittedAt: rec ? new Date(rec.at).toLocaleString(lang === "th" ? "th-TH" : "en-GB") : "",
       statusStyle: { padding: "4px 12px", borderRadius: 999, fontSize: 13, fontWeight: 700, whiteSpace: "nowrap", background: st.kyc === "VERIFIED" ? "oklch(0.94 0.04 165)" : st.kyc === "PENDING" ? "oklch(0.95 0.04 70)" : "oklch(0.95 0.006 95)", color: st.kyc === "VERIFIED" ? "oklch(0.4 0.09 165)" : st.kyc === "PENDING" ? "oklch(0.48 0.1 60)" : "oklch(0.45 0.02 170)" },
-      justSent: st.kyc === "PENDING", kycOff: st.kyc === "NONE" || st.kyc === "REJECTED",
+      justSent: st.kyc === "PENDING", isOk: st.kyc === "VERIFIED" && !!rec, isRej: st.kyc === "REJECTED" && !!rec, rejText: rec && rec.reject ? rejText(rec.reject) : "", rejBy: rec && rec.reject ? t.rejBy.replace("{b}", rec.reject.by).replace("{d}", fmtD(rec.reject.at)) : "",
+      ekRows: ekRows(rec), hasEk: !!(rec && rec.ekyc), ekDecision: rec && rec.ekyc ? t.ekDecision[rec.ekyc.decision] : "", kycOff: st.kyc === "NONE" || st.kyc === "REJECTED",
       recRows: recItems.map((it) => ({ label: t.kcLabels[it.k], ver: t.kcVer.replace("{v}", it.v), st: it.wd ? t.kcWithdrawn : it.on ? t.kcGiven : t.kcNot, at: new Date(it.at).toLocaleString(lang === "th" ? "th-TH" : "en-GB", { dateStyle: "medium", timeStyle: "short" }),
         stStyle: { padding: "2px 10px", borderRadius: 999, fontSize: 12, fontWeight: 700, whiteSpace: "nowrap", background: it.wd ? "oklch(0.97 0.02 25)" : it.on ? "oklch(0.94 0.04 165)" : "oklch(0.95 0.006 95)", color: it.wd ? "oklch(0.52 0.16 25)" : it.on ? "oklch(0.4 0.09 165)" : "oklch(0.5 0.02 170)" } })),
       toggleMkt: () => { if (!rec) return; const cur = (rec.items.find((x) => x.k === "mkt") || {}).on; this.setState((s) => ({ kycRec: { ...s.kycRec, items: s.kycRec.items.map((x) => (x.k === "mkt" ? { ...x, on: !cur, wd: false, at: Date.now() } : x)) } })); this.showToast(cur ? t.kcMktOff : t.kcMktOn); },
@@ -4556,6 +4861,7 @@ class Component extends DCLogic {
       startWd: () => this.setState({ kWd: true }), cancelWd: () => this.setState({ kWd: false }),
       doWd: () => { this.setState((s) => ({ kWd: false, kyc: "NONE", kSelfie: "", kycRec: { ...s.kycRec, items: s.kycRec.items.map((x) => (x.k === "bio" ? { ...x, on: false, wd: true, at: Date.now() } : x)) } })); this.showToast(t.kcBioWithdrawn); },
       restart: () => this.openKyc(true), goDash: () => goDash("overview"), step0Label: t.kycSteps[0],
+      selfieDemo: KYC_FACE, liveBtn: kLive === "done" ? t.liveRetry : t.liveStart,
     };
     /* ===== PROVIDER SERVICE LISTING ===== */
     const sn = st.svn || EMPTY_SVN, snE = st.svnErr || {}, snImgs = st.svnImgs || [];
@@ -4653,14 +4959,77 @@ class Component extends DCLogic {
       another: () => this.openSvn(), toDash: () => goDash("listings"),
     };
     const svc = { mine: svcMine, has: svcMine.length > 0, show: isProv, showAdd: isProv && !provOnly, provNone: provOnly && svcMine.length === 0, toNew: () => this.openSvn() };
+    /* ===== ADMIN · KYC REVIEW ===== */
+    const krUid = st.kycRev || null, krAcct = krUid ? allAccts.find((a) => a.email === krUid) : null, krSl = krUid ? sl(krUid) : null, krRec = krSl ? krSl.kycRec : null;
+    const krSt = krSl ? krSl.kyc || "NONE" : "NONE", krPerm = can("users.kyc"), krCan = krPerm && krSt === "PENDING" && !!krRec, krChk = st.krChk || {};
+    const krNm = krAcct ? `${krAcct.first} ${krAcct.last}` : "";
+    const okChip = (ok, yes, no) => ({ label: ok ? yes : no, style: { flex: "none", padding: "2px 10px", borderRadius: 999, fontSize: 12, fontWeight: 700, whiteSpace: "nowrap", background: ok ? "oklch(0.94 0.04 165)" : "oklch(0.97 0.02 25)", color: ok ? "oklch(0.4 0.09 165)" : "oklch(0.52 0.16 25)" } });
+    const krDups = krRec && krRec.idNo ? users.filter((u) => u.email !== krUid && sl(u.email).kycRec && sl(u.email).kycRec.idNo === krRec.idNo) : [];
+    const krFace = krRec && krRec.ekyc ? krRec.ekyc.face : 0, krFaceLvl = krFace >= EK_THR.pass ? "ok" : krFace >= EK_THR.review ? "warn" : "bad";
+    const krExpOk = !!(krRec && krRec.exp && krRec.exp >= kToday);
+    const krNameOk = !!(krRec && krAcct && (krRec.name || "").replace(/\s+/g, " ").trim() === krNm.trim());
+    const krConsOk = !!(krRec && ["terms", "privacy", "bio"].every((k) => (krRec.items.find((x) => x.k === k) || {}).on));
+    const krSys = [krConsOk, !!(krRec && krRec.ekyc && krRec.ekyc.dopa === "OK"), krNameOk && krExpOk, krFace >= EK_THR.pass, krDups.length === 0];
+    const krClose = () => this.setState({ kycRev: null, krChk: {}, krReason: "", krNote: "", krErr: "" });
+    const kr = {
+      open: !!krUid, hasRec: !!krRec, noRec: !krRec, close: krClose, stop: (e) => e.stopPropagation(),
+      name: krNm, sub: krAcct ? `${krAcct.email} · ${krAcct.phone}` : "", ref: krRec ? krRec.ref : "", submitted: krRec ? t.krSubmitted.replace("{d}", fmtD(krRec.at)) : "",
+      status: t.kycSt[krSt] || krSt, statusStyle: { padding: "3px 12px", borderRadius: 999, fontSize: 13, fontWeight: 700, whiteSpace: "nowrap", background: krSt === "VERIFIED" ? "oklch(0.94 0.04 165)" : krSt === "PENDING" ? "oklch(0.95 0.04 70)" : krSt === "REJECTED" ? "oklch(0.97 0.02 25)" : "oklch(0.95 0.006 95)", color: krSt === "VERIFIED" ? "oklch(0.4 0.09 165)" : krSt === "PENDING" ? "oklch(0.48 0.1 60)" : krSt === "REJECTED" ? "oklch(0.52 0.16 25)" : "oklch(0.45 0.02 170)" },
+      decision: krRec && krRec.ekyc ? t.ekDecision[krRec.ekyc.decision] : "", reasons: krRec && krRec.ekyc ? krRec.ekyc.reasons.map((r) => t.ekReasons[r] || r) : [], hasReasons: !!(krRec && krRec.ekyc && krRec.ekyc.reasons.length),
+      ekRows: ekRows(krRec), face: krFace + "%", faceLabel: krFaceLvl === "ok" ? t.ekOk : krFaceLvl === "warn" ? t.ekWarn : t.ekBad,
+      barFill: { position: "absolute", left: 0, top: 0, bottom: 0, width: krFace + "%", borderRadius: 999, background: krFaceLvl === "ok" ? "oklch(0.5 0.1 165)" : krFaceLvl === "warn" ? "oklch(0.68 0.13 65)" : "oklch(0.58 0.18 25)" },
+      faceStyle: { fontFamily: "Anuphan,sans-serif", fontSize: 30, fontWeight: 700, lineHeight: 1, color: krFaceLvl === "ok" ? "oklch(0.4 0.09 165)" : krFaceLvl === "warn" ? "oklch(0.5 0.11 60)" : "oklch(0.52 0.17 25)" },
+      front: krRec ? krRec.front || KYC_CARD : "", selfie: krRec ? krRec.selfie || KYC_FACE : "",
+      dataRows: krRec ? [["name", krRec.ocr.name, krRec.name], ["id", maskIdK(krRec.ocr.id || ""), maskIdK(krRec.idNo || "")], ["dob", krRec.ocr.dob, krRec.dob], ["exp", krRec.ocr.exp, krRec.exp], ["acct", krRec.name, krNm]].map(([k, a, b]) => {
+        const same = (a || "").replace(/\s+/g, " ").trim() === (b || "").replace(/\s+/g, " ").trim(); return { label: t.krFields[k], a: a || "—", b: b || "—", chip: okChip(same, "✓", "✗") }; }) : [],
+      expChip: okChip(krExpOk, t.krExpOk, t.krExpBad), dupChip: okChip(krDups.length === 0, t.krDupNone, t.krDupHit.replace("{n}", krDups.length).replace("{list}", krDups.map((u) => u.first + " " + u.last).join(", "))),
+      consents: krRec ? krRec.items.map((it) => ({ label: t.kcLabels[it.k] + " · " + t.kcVer.replace("{v}", it.v), chip: it.wd ? okChip(false, "", t.kcWithdrawn) : it.on ? okChip(true, t.kcGiven, "") : { ...okChip(false, "", t.kcNot), style: { ...okChip(false, "", "").style, background: "oklch(0.95 0.006 95)", color: "oklch(0.5 0.02 170)" } } })) : [],
+      checks: t.krChecks.map((label, i) => ({ label, checked: !!krChk[i], disabled: !krCan, sys: krSys[i] ? okChip(true, t.ekOk, "") : { label: t.ekWarn, style: { ...okChip(false, "", "").style, background: "oklch(0.95 0.04 70)", color: "oklch(0.48 0.1 60)" } },
+        onChange: (e) => { const v = e.target.checked; this.setState((s) => ({ krChk: { ...(s.krChk || {}), [i]: v }, krErr: "" })); },
+        style: { display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 12px", borderRadius: 12, border: krChk[i] ? "1px solid oklch(0.8 0.06 165)" : "1px solid oklch(0.92 0.008 95)", background: krChk[i] ? "oklch(0.97 0.025 165)" : "#fff", fontSize: 14, fontWeight: 500, lineHeight: 1.45, cursor: krCan ? "pointer" : "default" } })),
+      canAct: krCan, readOnly: !krPerm, showDone: !!(krRec && krRec.review), notCanAct: !krCan,
+      doneText: krRec && krRec.review ? t.krDone.replace("{r}", krRec.review.result === "APPROVED" ? t.krApproved : t.krRejected).replace("{b}", krRec.review.by).replace("{d}", fmtD(krRec.review.at)) : "",
+      rejText: krRec && krRec.reject ? rejText(krRec.reject) : "", hasRej: !!(krRec && krRec.reject),
+      autoHint: !!(krRec && krRec.ekyc && krRec.ekyc.decision === "AUTO_PASS"),
+      reasonOpts: [{ v: "", label: t.krReasonPh }, ...Object.entries(t.rejReasons).map(([v, label]) => ({ v, label }))], reason: st.krReason || "", note: st.krNote || "",
+      onReason: (e) => this.setState({ krReason: e.target.value, krErr: "" }), onNote: (e) => this.setState({ krNote: e.target.value }),
+      err: st.krErr || "", inp: { height: 46, width: "100%", borderRadius: 12, border: "1px solid oklch(0.9 0.008 95)", background: "oklch(0.985 0.003 95)", padding: "0 12px", fontSize: 15, outline: "none", cursor: "pointer" },
+      approve: () => { if (!t.krChecks.every((_, i) => krChk[i])) return this.setState({ krErr: t.krErrChecks }); const at = Date.now(), by = st.user ? st.user.first : "admin";
+        this.updSlice(krUid, (x) => ({ kyc: "VERIFIED", kycRec: { ...x.kycRec, reject: null, review: { by, at, result: "APPROVED" } } })); L("kycOk", krNm); this.showToast(t.krOkToast.replace("{n}", krNm)); krClose(); },
+      reject: () => { if (!st.krReason) return this.setState({ krErr: t.krErrReason }); const at = Date.now(), by = st.user ? st.user.first : "admin";
+        this.updSlice(krUid, (x) => ({ kyc: "REJECTED", kycRec: { ...x.kycRec, reject: { code: st.krReason, note: (st.krNote || "").trim(), by, at }, review: { by, at, result: "REJECTED" } } })); L("kycNo", krNm); this.showToast(t.krNoToast.replace("{n}", krNm)); krClose(); },
+      cols: isDesktop ? "minmax(0,1fr) minmax(0,1fr)" : "minmax(0,1fr)", col0: t.krCols[0], col1: t.krCols[1], col2: t.krCols[2],
+    };
+    /* ===== LENDER SIGN-UP ===== */
+    const ldR = st.r || EMPTY_R, ldv = { ...EMPTY_LD, ...(ldR.ld || {}) }, ldE = (st.errs && st.errs.ld) || {};
+    const setLd = (k, fn) => (e) => { const v = fn ? fn(e.target.value) : e.target.value; this.setState((s) => ({ r: { ...s.r, ld: { ...EMPTY_LD, ...(s.r.ld || {}), [k]: v } }, errs: { ...s.errs, ld: { ...((s.errs || {}).ld || {}), [k]: "" } } })); };
+    const togLd = (field, key, solo) => () => this.setState((s) => { const cur = { ...EMPTY_LD, ...(s.r.ld || {}) }; let m = { ...cur[field] };
+      if (solo) m = m[key] ? {} : { [key]: true }; else { if (field === "regions") delete m.ALL; m[key] = !m[key]; }
+      return { r: { ...s.r, ld: { ...cur, [field]: m } }, errs: { ...s.errs, ld: { ...((s.errs || {}).ld || {}), [field]: "" } } }; });
+    const ldInp = (bad) => ({ height: 48, width: "100%", borderRadius: 12, border: bad ? "1.5px solid oklch(0.62 0.18 25)" : "1px solid oklch(0.9 0.008 95)", background: bad ? "oklch(0.985 0.01 25)" : "oklch(0.985 0.003 95)", padding: "0 14px", fontSize: 16, outline: "none", color: "oklch(0.22 0.02 170)", fontWeight: 400 });
+    const ldChip = (on, bad) => ({ minHeight: 40, padding: "0 14px", borderRadius: 999, cursor: "pointer", fontWeight: 600, fontSize: 14, border: on ? "1px solid oklch(0.45 0.12 300)" : bad ? "1px solid oklch(0.75 0.1 25)" : "1px solid oklch(0.9 0.008 95)", background: on ? "oklch(0.45 0.12 300)" : "#fff", color: on ? "#fff" : "oklch(0.3 0.02 170)" });
+    const ldNum = (x) => x.replace(/\D/g, "").slice(0, 12);
+    const ld = {
+      show: !!(ldR.roles || {}).LENDER, v: { ...ldv, coReg: fmtId(ldv.coReg), min: ldv.min ? (+ldv.min).toLocaleString("en-US") : "", max: ldv.max ? (+ldv.max).toLocaleString("en-US") : "" },
+      err: Object.fromEntries(["coName", "coReg", "licType", "licNo", "prods", "max", "regions", "cName", "cPhone", "cEmail"].map((k) => [k, ldE[k] || ""])),
+      fs: Object.fromEntries(["coName", "coReg", "licNo", "min", "max", "rate", "cName", "cPos", "cPhone", "cEmail"].map((k) => [k, ldInp(ldE[k])])), sel: { ...ldInp(ldE.licType), cursor: "pointer" },
+      on: { coName: setLd("coName"), coReg: setLd("coReg", (x) => x.replace(/\D/g, "").slice(0, 13)), licType: setLd("licType"), licNo: setLd("licNo"), min: setLd("min", ldNum), max: setLd("max", ldNum), rate: setLd("rate", (x) => x.replace(/[^\d.]/g, "").slice(0, 5)), cName: setLd("cName"), cPos: setLd("cPos"), cPhone: setLd("cPhone"), cEmail: setLd("cEmail") },
+      licOpts: [{ v: "", label: t.ldLicPh }, ...t.ldLicTypes.map((label, i) => ({ v: String(i), label }))],
+      prods: t.ldProdList.map((label, i) => ({ label, active: (ldv.prods || {})[i] ? "true" : "false", onClick: togLd("prods", i), style: ldChip(!!(ldv.prods || {})[i], !!ldE.prods) })),
+      regions: [["ALL", t.ldAllTh], ...REGIONS.map((x) => [String(x[0]), lang === "th" ? x[1] : x[2]])].map(([k, label]) => ({ label, active: (ldv.regions || {})[k] ? "true" : "false", onClick: k === "ALL" ? togLd("regions", "ALL", true) : togLd("regions", k), style: ldChip(!!(ldv.regions || {})[k], !!ldE.regions) })),
+      fill: () => this.setState((s) => ({ r: { ...s.r, acct: "COMPANY", ld: { coName: lang === "th" ? "บริษัท ปล่อยไว แคปปิตอล จำกัด" : "Ploiwai Capital Co., Ltd.", coReg: withCheck("010556098765"), licType: "2", licNo: "DEMO-LIC-0001", prods: { 0: true, 1: true, 2: true, 4: true }, min: "200000", max: "30000000", rate: "6.25", regions: { ALL: true }, cName: lang === "th" ? "สมปอง ปล่อยไว" : "Sompong Ploiwai", cPos: lang === "th" ? "ผู้จัดการฝ่ายสินเชื่อ" : "Credit manager", cPhone: "0855555555", cEmail: "credit@ploiwai.example" } }, errs: { ...s.errs, ld: {} } })),
+      cta: () => { this.setState({ r: { ...EMPTY_R, pv: { ...EMPTY_PV }, ld: { ...EMPTY_LD }, roles: { LENDER: true }, acct: "COMPANY" }, errs: {}, formErr: "" }); this.go("register"); },
+      ctaPoints: t.ldCtaPoints.map(([title, desc]) => ({ title, desc })),
+    };
     const userName = st.user ? st.user.first : "";
     return {
+      kr, ld,
       isNewSvc: st.view === "newsvc", svn, svc, postLabel: provOnly ? t.postSvc : t.post,
       isHelp: st.view === "help", isKyc: st.view === "kyc", hp, ct, doc, ky, goHelp: () => goHelp(), openTerms: () => openDoc("terms"), openPrivacy: () => openDoc("privacy"), menuHelp: () => goHelp(),
       isTrack, tv, notifs, nUnread, nHasUnread: nUnread > 0, nEmpty: notifs.length === 0, notifOpen: st.notifOpen, hasUserNA: !!st.user && !isAdm,
       toggleNotif: () => this.setState((s) => ({ notifOpen: !s.notifOpen, menu: false })), nReadAll: () => this.setState((s) => ({ readN: { ...s.readN, ...Object.fromEntries(notifs.map((x) => [x.id, true])) } })),
       nToBills: () => { this.setState({ notifOpen: false }); goDash("bills"); },
-      nPanelStyle: isMobile ? { position: "fixed", left: 10, right: 10, top: 74, zIndex: 70, background: "#fff", borderRadius: 20, border: "1px solid oklch(0.92 0.008 95)", boxShadow: "0 30px 60px -20px rgba(20,40,35,.45)" } : { position: "absolute", right: "clamp(16px,4vw,32px)", top: 64, width: 400, zIndex: 70, background: "#fff", borderRadius: 20, border: "1px solid oklch(0.92 0.008 95)", boxShadow: "0 30px 60px -20px rgba(20,40,35,.45)" },
+      nPanelStyle: isMobile ? { position: "fixed", left: 10, right: 10, top: 74, zIndex: 70, background: "#fff", borderRadius: 20, border: "1px solid oklch(0.92 0.008 95)", boxShadow: "0 30px 60px -20px rgba(20,40,35,.45)" } : { position: "absolute", right: 0, top: "calc(100% + 8px)", width: 400, zIndex: 70, background: "#fff", borderRadius: 20, border: "1px solid oklch(0.92 0.008 95)", boxShadow: "0 30px 60px -20px rgba(20,40,35,.45)" },
       isAdmin, ad, ac, sf, userLevel: isAdm ? t.adminLvl : t.kycSt[st.kyc] || t.lvl1, menuDash: () => (isAdm ? this.go("admin") : goDash("overview")), menuDashLabel: isAdm ? t.adminConsole : t.dashboard,
       isPayV, py, isFinance, fn, goFinance: () => goFinance(), fnFormRef: this.fnFormRef,
       isServices, isRequest, isInvest, sv, rq, iv, svImgRef: this.svImgRef,
